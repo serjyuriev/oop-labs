@@ -1,0 +1,11 @@
+Z:\Visual Studio Projects\Kalentyev\LW_1\TestingApp\obj\Debug\TestingApp.Properties.Resources.resources
+Z:\Visual Studio Projects\Kalentyev\LW_1\TestingApp\obj\Debug\TestingApp.csproj.GenerateResource.cache
+Z:\Visual Studio Projects\Kalentyev\LW_1\TestingApp\bin\Debug\TestingApp.exe.config
+Z:\Visual Studio Projects\Kalentyev\LW_1\TestingApp\bin\Debug\TestingApp.exe
+Z:\Visual Studio Projects\Kalentyev\LW_1\TestingApp\bin\Debug\TestingApp.pdb
+Z:\Visual Studio Projects\Kalentyev\LW_1\TestingApp\bin\Debug\PersonLib.dll
+Z:\Visual Studio Projects\Kalentyev\LW_1\TestingApp\bin\Debug\PersonLib.pdb
+Z:\Visual Studio Projects\Kalentyev\LW_1\TestingApp\obj\Debug\TestingApp.csprojAssemblyReference.cache
+Z:\Visual Studio Projects\Kalentyev\LW_1\TestingApp\obj\Debug\TestingApp.csproj.CopyComplete
+Z:\Visual Studio Projects\Kalentyev\LW_1\TestingApp\obj\Debug\TestingApp.exe
+Z:\Visual Studio Projects\Kalentyev\LW_1\TestingApp\obj\Debug\TestingApp.pdb
