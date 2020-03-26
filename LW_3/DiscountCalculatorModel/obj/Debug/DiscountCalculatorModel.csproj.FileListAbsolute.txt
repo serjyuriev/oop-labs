@@ -1,0 +1,5 @@
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorModel\bin\Debug\DiscountCalculatorModel.dll
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorModel\bin\Debug\DiscountCalculatorModel.pdb
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorModel\obj\Debug\DiscountCalculatorModel.csprojAssemblyReference.cache
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorModel\obj\Debug\DiscountCalculatorModel.dll
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorModel\obj\Debug\DiscountCalculatorModel.pdb

@@ -1,0 +1,177 @@
+﻿<Window x:Class="DiscountCalculatorGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DiscountCalculatorGUI"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Height="350" 
+        Width="400"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        DataContext="{Binding ViewModel, RelativeSource={RelativeSource self}}">
+    <Window.Resources>
+        <!-- Labels style -->
+        <Style x:Key="tbStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="./Resources/#Champagne &amp; Limousines"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid MouseDown="Grid_MouseDown" Background="#FFFFF7F7">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Drawer grid -->
+        <Grid x:Name="DrawerGrid"
+              Grid.Column="0"
+              HorizontalAlignment="Left"
+              Background="#FFFFCFCF">
+            <StackPanel Orientation="Vertical">
+                <Image Height="150"
+                       Source="./Resources/icons8-calculator-100.png"
+                       Stretch="None"/>
+                <ListView x:Name="lvSales" 
+                          Foreground="#FF5F5F5F" 
+                          FontFamily="./Resources/#Champagne &amp; Limousines"
+                          FontSize="18"
+                          SelectedIndex="0">
+                    <!-- Certificate -->
+                    <ListViewItem Height="50"
+                                  Padding="0"
+                                  DataContext="{Binding Sales[0]}">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="10,0">
+                            <materialDesign:PackIcon Kind="CardGiftcard" 
+                                                     Foreground="#FF8889B9"
+                                                     VerticalAlignment="Center"
+                                                     Height="25"
+                                                     Width="25"/>
+                            <TextBlock Text="Certificate"
+                                       VerticalAlignment="Center"
+                                       Margin="10,0" Foreground="Black"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <!-- Percent sale -->
+                    <ListViewItem Height="50"
+                                  Padding="0"
+                                  DataContext="{Binding Sales[1]}">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="10,0">
+                            <materialDesign:PackIcon Kind="PercentOutline" 
+                                                     Foreground="#FFEF9922"
+                                                     VerticalAlignment="Center"
+                                                     Height="25"
+                                                     Width="25"/>
+                            <TextBlock Text="Percent sale"
+                                       VerticalAlignment="Center"
+                                       Margin="10,0" Foreground="Black"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+
+        <!--#region Calculator XAML -->
+
+        <!-- Close application button -->
+        <Button x:Name="btnApplicationClose"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Style="{StaticResource MaterialDesignToolButton}"
+                Width="30"
+                Height="30"
+                Click="btnApplicationClose_Click">
+            <materialDesign:PackIcon Kind="Clear"
+                                     Foreground="#FF5F5F5F"/>
+        </Button>
+
+        <Grid x:Name="ContentGrid" 
+              Grid.Column="1"
+              Margin="0,30,0,0" Background="#FFFFF7F7">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.05*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.05*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Initial cost -->
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        Grid.Row="1"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Initial cost"
+                           Style="{StaticResource tbStyle}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Text="{Binding ElementName=lvSales, Path=SelectedItem.DataContext.InitialCost, ValidatesOnDataErrors=True}"
+                             TextAlignment="Right"
+                             Width="150"
+                             FontFamily="./Resources/#Champagne &amp; Limousines"
+                             FontSize="20"/>
+                    <TextBlock Text="rub"
+                               Margin="10,0"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource tbStyle}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Discount -->
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Grid.Row="3">
+                <TextBlock Text="Discount"
+                           Style="{StaticResource tbStyle}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Text="{Binding ElementName=lvSales, Path=SelectedItem.DataContext.Discount, ValidatesOnDataErrors=True}"
+                             TextAlignment="Right"
+                             Width="150"
+                             FontFamily="./Resources/#Champagne &amp; Limousines"
+                             FontSize="20"/>
+                    <TextBlock Text="{Binding ElementName=lvSales, Path=SelectedItem.DataContext.DiscountMeasure}"
+                               Margin="10,0"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource tbStyle}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Final cost -->
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Grid.Row="5">
+                <TextBlock Text="Final cost"
+                           Style="{StaticResource tbStyle}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Text="{Binding ElementName=lvSales, Path=SelectedItem.DataContext.FinalCost, Mode=OneWay, StringFormat=0.00}"
+                             TextAlignment="Right"
+                             Width="150"
+                             FontFamily="./Resources/#Champagne &amp; Limousines"
+                             FontSize="20"
+                             IsReadOnly="True"/>
+                    <TextBlock Text="rub"
+                               Margin="10,0"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource tbStyle}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
+        <!--#endregion-->
+        
+    </Grid>
+</Window>

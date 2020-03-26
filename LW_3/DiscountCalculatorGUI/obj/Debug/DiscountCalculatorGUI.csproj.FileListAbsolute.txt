@@ -1,0 +1,128 @@
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe.config
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.pdb
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.dll
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.dll
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.pdb
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.pdb
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.xml
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csprojAssemblyReference.cache
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\MainWindow.g.cs
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\App.g.cs
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.cache
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.lref
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\MainWindow.baml
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.g.resources
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.Properties.Resources.resources
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.GenerateResource.cache
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.CopyComplete
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.exe
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.pdb
+E:\Program Files (x86)\VS 2019 Repository\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\App.baml
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe.config
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.pdb
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.dll
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csprojAssemblyReference.cache
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\MainWindow.g.cs
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\App.g.cs
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.cache
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.lref
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\App.baml
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\MainWindow.baml
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.g.resources
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.Properties.Resources.resources
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.GenerateResource.cache
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.CopyComplete
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.exe
+C:\Users\Sergey\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.pdb
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe.config
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.pdb
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.dll
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csprojAssemblyReference.cache
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\MainWindow.g.cs
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\App.g.cs
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.cache
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.lref
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\App.baml
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\MainWindow.baml
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.g.resources
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.Properties.Resources.resources
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.GenerateResource.cache
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.CopyComplete
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.exe
+C:\Users\Юрьевы\Desktop\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.pdb
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe.config
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.pdb
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.dll
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.dll
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.pdb
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.pdb
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.xml
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csprojAssemblyReference.cache
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\MainWindow.g.cs
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\App.g.cs
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.cache
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.lref
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\App.baml
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\MainWindow.baml
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.g.resources
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.Properties.Resources.resources
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.GenerateResource.cache
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.CopyComplete
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.exe
+\\10.0.0.103\z\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.pdb
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe.config
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.pdb
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.dll
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.dll
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.pdb
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.pdb
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.xml
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csprojAssemblyReference.cache
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\MainWindow.g.cs
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\App.g.cs
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.cache
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.lref
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\App.baml
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\MainWindow.baml
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.g.resources
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.Properties.Resources.resources
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.GenerateResource.cache
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.CopyComplete
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.exe
+Z:\Visual Studio Projects\Kalentyev\DiscountCalculatorGUI\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.pdb
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe.config
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.exe
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorGUI.pdb
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.dll
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.dll
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\bin\Debug\MaterialDesignColors.pdb
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.pdb
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\bin\Debug\MaterialDesignThemes.Wpf.xml
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csprojAssemblyReference.cache
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\MainWindow.g.cs
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\App.g.cs
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.cache
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI_MarkupCompile.lref
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\App.baml
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\MainWindow.baml
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.g.resources
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.Properties.Resources.resources
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.GenerateResource.cache
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.csproj.CopyComplete
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.exe
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\obj\Debug\DiscountCalculatorGUI.pdb
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorModel.dll
+Z:\Visual Studio Projects\Kalentyev\LW_3\DiscountCalculatorGUI\bin\Debug\DiscountCalculatorModel.pdb
