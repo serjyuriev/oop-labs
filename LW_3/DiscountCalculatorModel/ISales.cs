@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace DiscountCalculatorModel
 {
@@ -31,5 +26,10 @@ namespace DiscountCalculatorModel
         /// В чем измеряется скидка
         /// </summary>
         string DiscountMeasure { get; }
+
+        /// <summary>
+        /// Название системы скидки
+        /// </summary>
+        string Name { get; }
     }
 }

@@ -2,9 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscountCalculatorModel
 {
@@ -45,9 +42,11 @@ namespace DiscountCalculatorModel
             {
                 if (value < 0)
                 {
-                    var errors = new List<string>();
-                    errors.Add($"{nameof(InitialCost)} can " +
-                        $"only be positive!");
+                    var errors = new List<string>
+                    {
+                        $"{nameof(InitialCost)} can " +
+                        $"only be positive!"
+                    };
                     SetErrors(nameof(InitialCost), errors);
                 }
                 else
@@ -69,9 +68,11 @@ namespace DiscountCalculatorModel
             {
                 if (value < 0 || value > 100)
                 {
-                    var errors = new List<string>();
-                    errors.Add($"{nameof(Discount)} value lies " +
-                        $"between 0 and 100!");
+                    var errors = new List<string>
+                    {
+                        $"{nameof(Discount)} value lies " +
+                        $"between 0 and 100!"
+                    };
                     SetErrors(nameof(Discount), errors);
                 }
                 else
@@ -100,6 +101,14 @@ namespace DiscountCalculatorModel
             {
                 return InitialCost * (1 - Discount / 100);
             }
+        }
+
+        /// <summary>
+        /// Имя системы скидок
+        /// </summary>
+        public string Name
+        {
+            get => "Percent";
         }
 
         /// <summary>

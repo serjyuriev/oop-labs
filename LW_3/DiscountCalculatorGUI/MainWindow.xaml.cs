@@ -22,61 +22,11 @@ namespace DiscountCalculatorGUI
     public partial class MainWindow : Window
     {
         /// <summary>
-        /// Модель представления
-        /// </summary>
-        public MainWindowViewModel ViewModel { get; set; } =
-            new MainWindowViewModel();
-
-        /// <summary>
         /// Конструктор модели
         /// </summary>
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// Закрыть приложение
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnApplicationClose_Click(
-            object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        /// <summary>
-        /// Перемещение окна
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Grid_MouseDown(
-            object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
-        /// <summary>
-        /// Скрытие контента окна при открытии шторки
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnDrawerOpen_Click(
-            object sender, RoutedEventArgs e)
-        {
-            ContentGrid.Visibility = Visibility.Hidden;
-        }
-
-        /// <summary>
-        /// Показ контента окна при закрытии шторки
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnDrawerClose_Click(
-            object sender, RoutedEventArgs e)
-        {
-            ContentGrid.Visibility = Visibility.Visible;
         }
     }
 }

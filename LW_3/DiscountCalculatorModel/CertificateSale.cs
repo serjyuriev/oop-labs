@@ -2,9 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscountCalculatorModel
 {
@@ -43,18 +40,9 @@ namespace DiscountCalculatorModel
             get => _initialCost;
             set
             {
-                if (value < 0)
-                {
-                    var errors = new List<string>();
-                    errors.Add($"{nameof(InitialCost)} can " +
-                        $"only be positive!");
-                    SetErrors(nameof(InitialCost), errors);
-                }
-                else
+                if (IsInputValid(value, nameof(InitialCost)))
                 {
                     _initialCost = value;
-                    ClearErrors(nameof(InitialCost));
-                    OnPropertyChanged(nameof(FinalCost));
                 }
             }
         }
@@ -67,18 +55,9 @@ namespace DiscountCalculatorModel
             get => _discount;
             set
             {
-                if (value < 0)
-                {
-                    var errors = new List<string>();
-                    errors.Add($"{nameof(Discount)} can " +
-                        $"only be positive!");
-                    SetErrors(nameof(Discount), errors);
-                }
-                else
+                if (IsInputValid(value, nameof(Discount)))
                 {
                     _discount = value;
-                    ClearErrors(nameof(Discount));
-                    OnPropertyChanged(nameof(FinalCost));
                 }
             }
         }
@@ -109,6 +88,14 @@ namespace DiscountCalculatorModel
                     return finalCost;
                 }
             }
+        }
+
+        /// <summary>
+        /// Имя сертификационной системы
+        /// </summary>
+        public string Name
+        {
+            get => "Certificate";
         }
 
         /// <summary>
@@ -197,6 +184,32 @@ namespace DiscountCalculatorModel
                 {
                     return null;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Проверка ввода на наличие ошибок
+        /// </summary>
+        /// <param name="value">Величина параметра</param>
+        /// <param name="propertyName">Название проверяемого свойства</param>
+        /// <returns></returns>
+        private bool IsInputValid(double value, string propertyName)
+        {
+            if (value < 0)
+            {
+                var errors = new List<string>
+                {
+                    $"{propertyName} can " +
+                    $"only be positive!"
+                };
+                SetErrors(propertyName, errors);
+                return false;
+            }
+            else
+            {
+                ClearErrors(propertyName);
+                OnPropertyChanged(nameof(FinalCost));
+                return true;
             }
         }
 

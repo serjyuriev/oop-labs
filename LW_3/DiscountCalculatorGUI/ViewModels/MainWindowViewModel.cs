@@ -14,10 +14,24 @@ namespace DiscountCalculatorGUI.ViewModels
     public class MainWindowViewModel
     {
         /// <summary>
+        /// Выбранная скидочная система
+        /// </summary>
+        private ISales _selectedSale;
+
+        /// <summary>
         /// Список систем скидок
         /// </summary>
         public IList<ISales> Sales { get; } =
             new ObservableCollection<ISales>();
+
+        /// <summary>
+        /// Выбранная скидочная система
+        /// </summary>
+        public ISales SelectedSale
+        {
+            get => _selectedSale;
+            set => _selectedSale = value;
+        }
 
         /// <summary>
         /// Конструктор модели представления
@@ -26,6 +40,7 @@ namespace DiscountCalculatorGUI.ViewModels
         {
             Sales.Add(new CertificateSale());
             Sales.Add(new PercentSale());
+            SelectedSale = Sales[0];
         }
     }
 }
