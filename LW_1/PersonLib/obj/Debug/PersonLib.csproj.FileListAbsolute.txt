@@ -1,7 +1,0 @@
-Z:\Visual Studio Projects\Kalentyev\LW_1\PersonLib\obj\Debug\PersonLib.csprojAssemblyReference.cache
-Z:\Visual Studio Projects\Kalentyev\LW_1\PersonLib\obj\Debug\PersonLib.csproj.GenerateResource.cache
-Z:\Visual Studio Projects\Kalentyev\LW_1\PersonLib\bin\Debug\PersonLib.dll
-Z:\Visual Studio Projects\Kalentyev\LW_1\PersonLib\bin\Debug\PersonLib.pdb
-Z:\Visual Studio Projects\Kalentyev\LW_1\PersonLib\obj\Debug\PersonLib.Properties.Resources.resources
-Z:\Visual Studio Projects\Kalentyev\LW_1\PersonLib\obj\Debug\PersonLib.dll
-Z:\Visual Studio Projects\Kalentyev\LW_1\PersonLib\obj\Debug\PersonLib.pdb
