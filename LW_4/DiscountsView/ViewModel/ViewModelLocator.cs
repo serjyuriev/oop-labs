@@ -41,7 +41,6 @@ namespace DiscountsView.ViewModel
 
         public AddingObjectViewModel AddingObjectViewModel
         {
-            
             get => ServiceLocator.Current.
                 GetInstance<AddingObjectViewModel>();
         }

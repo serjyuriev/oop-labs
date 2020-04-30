@@ -10,8 +10,7 @@
         Height="450"
         Width="500"
         ResizeMode="NoResize"
-        DataContext=
-        "{Binding Source={StaticResource Locator}, Path=MainViewModel}">
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
     <Window.Resources>
         <Style x:Key="buttonStyle" TargetType="Button">
             <Setter Property="Margin" Value="7.5" />
@@ -23,8 +22,6 @@
             <RowDefinition Height="7.5*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        <ContentControl Content="{Binding CurrentViewModel}" />
         
         <DataGrid Grid.Row="0"
                   ItemsSource="{Binding Sales}"

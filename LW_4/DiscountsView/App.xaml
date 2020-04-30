@@ -8,9 +8,13 @@
              d1p1:Ignorable="d" 
              xmlns:d1p1=
              "http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:DiscountsView.ViewModel">
+             xmlns:vm="clr-namespace:DiscountsView.ViewModel"
+             xmlns:view="clr-namespace:DiscountsView.Views">
     <Application.Resources>
         <vm:ViewModelLocator x:Key="Locator" 
-                             d:IsDataSource="True"  />
+                             d:IsDataSource="True" />
+        <DataTemplate DataType="{x:Type vm:AddingObjectViewModel}">
+            <view:AddingObjectWindow />
+        </DataTemplate>
     </Application.Resources>
 </Application>

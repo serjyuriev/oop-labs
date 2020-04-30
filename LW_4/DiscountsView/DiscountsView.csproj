@@ -125,6 +125,10 @@
       <Project>{51152a50-557f-42a0-9fbc-145038d1e772}</Project>
       <Name>DiscountCalculatorModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WPFWindowServices\WPFWindowServices.csproj">
+      <Project>{6966fe5c-35ec-4b7e-91ea-145bd7271a78}</Project>
+      <Name>WPFWindowServices</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

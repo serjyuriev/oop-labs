@@ -151,7 +151,10 @@ namespace PersonLib
         {
             for (int i = 0; i < _persons.Length; i++)
             {
-                if (_persons[i] == person)
+                if (_persons[i].Firstname == person.Firstname &&
+                    _persons[i].Lastname == person.Lastname &&
+                    _persons[i].Age == person.Age &&
+                    _persons[i].Gender == person.Gender)
                 {
                     return i;
                 }

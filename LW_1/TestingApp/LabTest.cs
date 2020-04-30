@@ -41,8 +41,6 @@ namespace TestingApp
             artists.AddRange(peopleForFirstList);
             actors.AddRange(peopleForSecondList);
 
-            Properties.Resources.gavno = "gen";
-
             PrintEndStrings();
             PrintLists(artists, actors);
 

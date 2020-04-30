@@ -1,5 +1,3 @@
-#define LOCATOR
-
 using DiscountCalculatorModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -8,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Security.Policy;
 using System.Windows;
+using WPFWindowServices;
 
 namespace DiscountsView.ViewModel
 {
@@ -16,33 +15,12 @@ namespace DiscountsView.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        /// <summary>
-        /// Текущая модель представления
-        /// </summary>
-        private ViewModelBase _currentViewModel;
-
-        /// <summary>
-        /// Текущая модель представления
-        /// </summary>
-        public ViewModelBase CurrentViewModel
-        {
-            get => _currentViewModel;
-            set
-            {
-                if (_currentViewModel == value)
-                {
-                    return;
-                }
-
-                _currentViewModel = value;
-                RaisePropertyChanged("CurrentViewModel");
-            }
-        }
+        private readonly IWindowService _windowService = new WindowService();
 
         /// <summary>
         /// Модель представления окна добавления объекта
         /// </summary>
-        readonly static AddingObjectViewModel _addingObjectViewModel =
+        private AddingObjectViewModel _addingObjectViewModel =
             new AddingObjectViewModel();
 
         /// <summary>
@@ -74,16 +52,17 @@ namespace DiscountsView.ViewModel
 
         private void OpenAddingSaleWindow()
         {
-#if STRAIGHT
-            // Так нельзя делать - нарушение MVVM
-            var openAddingSaleWindow = new AddingObjectWindow();
-            openAddingSaleWindow.Show();
-#elif MESSENGER
-            Messenger.Default.Send(
-                new NotificationMessage("openAddingSaleWindow"));
-#elif LOCATOR
-            CurrentViewModel = _addingObjectViewModel;
-#endif
+            _windowService.ShowWindow(_addingObjectViewModel);
+        }
+    }
+
+    public class WindowService : IWindowService
+    {
+        public void ShowWindow(object viewModel)
+        {
+            var window = new Window();
+            window.DataContext = viewModel;
+            window.Show();
         }
     }
 }

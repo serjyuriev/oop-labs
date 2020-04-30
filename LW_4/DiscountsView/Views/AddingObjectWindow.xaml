@@ -9,9 +9,7 @@
         Title="Adding new sale" 
         ResizeMode="NoResize"
         Height="350" 
-        Width="250"
-        DataContext=
-        "{Binding Source={StaticResource Locator}, Path=AddingObjectViewModel}">
+        Width="250">
     <Window.Resources>
         <Style x:Key="textBlockStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
