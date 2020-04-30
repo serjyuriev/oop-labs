@@ -6,13 +6,38 @@
         "http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiscountsView"
         mc:Ignorable="d"
-        Title="Adding Sale" 
+        Title="Adding new sale" 
         ResizeMode="NoResize"
-        Height="450" 
-        Width="800"
+        Height="350" 
+        Width="250"
         DataContext="{Binding Source={StaticResource Locator}, 
         Path=AddingObjectViewModel}">
+    <Window.Resources>
+        <Style x:Key="textBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Sale system"
+                   Grid.Row="0"
+                   Style="{StaticResource textBlockStyle}" />
+
+        <ComboBox Grid.Row="1"
+                  ItemsSource="{Binding Sales}"
+                  DisplayMemberPath="Name"
+                  FontSize="14" />
     </Grid>
 </Window>

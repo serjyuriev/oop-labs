@@ -1,7 +1,13 @@
+#define MESSENGER
+
 using DiscountCalculatorModel;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Security.Policy;
+using System.Windows;
 
 namespace DiscountsView.ViewModel
 {
@@ -20,6 +26,20 @@ namespace DiscountsView.ViewModel
     public class MainViewModel : ViewModelBase
     {
         /// <summary>
+        ///  оманда на открытие окна добавлени€ скидки
+        /// </summary>
+        public RelayCommand OpenAddingSaleWindowCommand { get; private set; }
+
+        /// <summary>
+        /// ћодель представлени€ дл€ окна добавлени€
+        /// TODO “ак делать наверн€ка неправильно, нужно пон€ть,
+        /// каким образом создавать модели представлени€ дл€ использовани€
+        /// мессенджера
+        /// </summary>
+        public AddingObjectViewModel AddingObjectViewModel { get; } =
+            new AddingObjectViewModel();
+
+        /// <summary>
         /// —писок систем скидок
         /// </summary>
         public IList<ISales> Sales { get; } =
@@ -35,6 +55,20 @@ namespace DiscountsView.ViewModel
             Sales.Add(new CertificateSale(10130, 3699));
             Sales.Add(new PercentSale(7999, 33));
             Sales.Add(new PercentSale(785000, 13));
+            #endif
+
+            OpenAddingSaleWindowCommand = new RelayCommand(
+                OpenAddingSaleWindow);
+        }
+
+        private void OpenAddingSaleWindow()
+        {
+            #if STRAIGHT
+            var openAddingSaleWindow = new AddingObjectWindow();
+            openAddingSaleWindow.Show();
+            #elif MESSENGER
+            Messenger.Default.Send(
+                new NotificationMessage("openAddingSaleWindow"));
             #endif
         }
     }

@@ -38,8 +38,9 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" 
-                    Content="Add sale"
-                    Style="{StaticResource buttonStyle}" />
+                    Content="Add sale" 
+                    Style="{StaticResource buttonStyle}" 
+                    Command="{Binding OpenAddingSaleWindowCommand}" />
             
             <Button Grid.Column="1" 
                     Content="Remove sale"

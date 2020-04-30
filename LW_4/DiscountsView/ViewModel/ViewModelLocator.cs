@@ -40,8 +40,18 @@ namespace DiscountsView.ViewModel
 
         public AddingObjectViewModel AddingObjectViewModel
         {
-            get => ServiceLocator.Current.
-                GetInstance<AddingObjectViewModel>();
+            get
+            {
+                try
+                {
+                    return ServiceLocator.Current.GetInstance<AddingObjectViewModel>();
+                }
+                catch (ActivationException)
+                {
+                    return new AddingObjectViewModel();
+                }
+            }
+                
         }
         
         public static void Cleanup()

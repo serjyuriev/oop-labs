@@ -122,6 +122,11 @@ namespace DiscountCalculatorModel
         #endregion
 
         #region Constructor
+        
+        /// <summary>
+        /// Создать экземпляр класса PercentSale
+        /// </summary>
+        public PercentSale() { }
 
         /// <summary>
         /// Создать объект класса PercentSale

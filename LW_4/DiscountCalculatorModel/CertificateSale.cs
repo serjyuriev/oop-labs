@@ -109,6 +109,11 @@ namespace DiscountCalculatorModel
         #endregion
 
         #region Constructor
+        
+        /// <summary>
+        /// Создать объект класса CertificateSale
+        /// </summary>
+        public CertificateSale() { }
 
         /// <summary>
         /// Создать объект класса CertificateSale
