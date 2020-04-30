@@ -1,4 +1,4 @@
-#define MESSENGER
+#define LOCATOR
 
 using DiscountCalculatorModel;
 using GalaSoft.MvvmLight;
@@ -12,32 +12,43 @@ using System.Windows;
 namespace DiscountsView.ViewModel
 {
     /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
-    /// </para>
-    /// <para>
-    /// You can also use Blend to data bind with the tool's support.
-    /// </para>
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
+    /// Модель представления главного окна программы
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
         /// <summary>
+        /// Текущая модель представления
+        /// </summary>
+        private ViewModelBase _currentViewModel;
+
+        /// <summary>
+        /// Текущая модель представления
+        /// </summary>
+        public ViewModelBase CurrentViewModel
+        {
+            get => _currentViewModel;
+            set
+            {
+                if (_currentViewModel == value)
+                {
+                    return;
+                }
+
+                _currentViewModel = value;
+                RaisePropertyChanged("CurrentViewModel");
+            }
+        }
+
+        /// <summary>
+        /// Модель представления окна добавления объекта
+        /// </summary>
+        readonly static AddingObjectViewModel _addingObjectViewModel =
+            new AddingObjectViewModel();
+
+        /// <summary>
         /// Команда на открытие окна добавления скидки
         /// </summary>
         public RelayCommand OpenAddingSaleWindowCommand { get; private set; }
-
-        /// <summary>
-        /// Модель представления для окна добавления
-        /// TODO Так делать наверняка неправильно, нужно понять,
-        /// каким образом создавать модели представления для использования
-        /// мессенджера
-        /// </summary>
-        public AddingObjectViewModel AddingObjectViewModel { get; } =
-            new AddingObjectViewModel();
 
         /// <summary>
         /// Список систем скидок
@@ -50,12 +61,12 @@ namespace DiscountsView.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            #if DEBUG
+#if DEBUG
             Sales.Add(new CertificateSale(150, 50));
             Sales.Add(new CertificateSale(10130, 3699));
             Sales.Add(new PercentSale(7999, 33));
             Sales.Add(new PercentSale(785000, 13));
-            #endif
+#endif
 
             OpenAddingSaleWindowCommand = new RelayCommand(
                 OpenAddingSaleWindow);
@@ -63,13 +74,16 @@ namespace DiscountsView.ViewModel
 
         private void OpenAddingSaleWindow()
         {
-            #if STRAIGHT
+#if STRAIGHT
+            // Так нельзя делать - нарушение MVVM
             var openAddingSaleWindow = new AddingObjectWindow();
             openAddingSaleWindow.Show();
-            #elif MESSENGER
+#elif MESSENGER
             Messenger.Default.Send(
                 new NotificationMessage("openAddingSaleWindow"));
-            #endif
+#elif LOCATOR
+            CurrentViewModel = _addingObjectViewModel;
+#endif
         }
     }
 }

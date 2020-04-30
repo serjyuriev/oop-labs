@@ -1,4 +1,6 @@
-﻿using DiscountCalculatorModel;
+﻿#define LOCATOR
+
+using DiscountCalculatorModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using System;
@@ -29,15 +31,20 @@ namespace DiscountsView.ViewModel
             Sales.Add(new PercentSale());
             Sales.Add(new CertificateSale());
 
+#if MESSENGER
+            // TODO Показать такой способ вызова нового окна
+            // и убедиться в его адекватности
             Messenger.Default.Register<NotificationMessage>(
                 this, message =>
                 {
                     if (message.Notification == "openAddingSaleWindow")
                     {
                         var view = new AddingObjectWindow();
+                        view.DataContext = this;
                         view.Show();
                     }
                 });
+#endif
         }
 
         

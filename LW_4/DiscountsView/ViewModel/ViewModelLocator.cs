@@ -31,6 +31,7 @@ namespace DiscountsView.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<AddingObjectViewModel>();
         }
 
         public MainViewModel MainViewModel
@@ -40,18 +41,9 @@ namespace DiscountsView.ViewModel
 
         public AddingObjectViewModel AddingObjectViewModel
         {
-            get
-            {
-                try
-                {
-                    return ServiceLocator.Current.GetInstance<AddingObjectViewModel>();
-                }
-                catch (ActivationException)
-                {
-                    return new AddingObjectViewModel();
-                }
-            }
-                
+            
+            get => ServiceLocator.Current.
+                GetInstance<AddingObjectViewModel>();
         }
         
         public static void Cleanup()
