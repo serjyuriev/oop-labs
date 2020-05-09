@@ -39,12 +39,6 @@ namespace DiscountsView.ViewModel
             get => ServiceLocator.Current.GetInstance<MainViewModel>();
         }
 
-        public AddingObjectViewModel AddingObjectViewModel
-        {
-            get => ServiceLocator.Current.
-                GetInstance<AddingObjectViewModel>();
-        }
-        
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

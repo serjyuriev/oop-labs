@@ -17,11 +17,18 @@ namespace DiscountsView.ViewModel
     /// </summary>
     public class AddingObjectViewModel : ViewModelBase
     {
+        //private ISales _selectedSale;
+
         /// <summary>
         /// Лист с доступными системами скидок
         /// </summary>
         public IList<ISales> Sales { get; } =
             new ObservableCollection<ISales>();
+
+        /// <summary>
+        /// Выбранная система скидок
+        /// </summary>
+        public ISales SelectedSale { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the AddingObjectViewModel class
@@ -30,6 +37,7 @@ namespace DiscountsView.ViewModel
         {
             Sales.Add(new PercentSale());
             Sales.Add(new CertificateSale());
+            SelectedSale = Sales[0];
         }
 
         

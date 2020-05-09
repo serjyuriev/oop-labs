@@ -15,6 +15,6 @@ namespace WPFWindowServices
         /// Показать окно
         /// </summary>
         /// <param name="viewModel">Модель представления для окна</param>
-        void ShowWindow(object viewModel);
+        void ShowWindow(object viewModel, string title);
     }
 }

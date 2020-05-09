@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DiscountsView.Views
 {
     /// <summary>
-    /// Interaction logic for AddingObjectWindow.xaml
+    /// Interaction logic for AddingObjectView.xaml
     /// </summary>
-    public partial class AddingObjectWindow : Window
+    public partial class AddingObjectView : UserControl
     {
-        public AddingObjectWindow()
+        public AddingObjectView()
         {
             InitializeComponent();
         }

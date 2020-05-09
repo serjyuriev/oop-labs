@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Security.Policy;
 using System.Windows;
+using System.Windows.Controls;
 using WPFWindowServices;
 
 namespace DiscountsView.ViewModel
@@ -52,17 +53,8 @@ namespace DiscountsView.ViewModel
 
         private void OpenAddingSaleWindow()
         {
-            _windowService.ShowWindow(_addingObjectViewModel);
-        }
-    }
-
-    public class WindowService : IWindowService
-    {
-        public void ShowWindow(object viewModel)
-        {
-            var window = new Window();
-            window.DataContext = viewModel;
-            window.Show();
+            _windowService.ShowWindow(
+                _addingObjectViewModel, "Adding new sale");
         }
     }
 }

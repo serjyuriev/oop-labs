@@ -14,7 +14,7 @@
         <vm:ViewModelLocator x:Key="Locator" 
                              d:IsDataSource="True" />
         <DataTemplate DataType="{x:Type vm:AddingObjectViewModel}">
-            <view:AddingObjectWindow />
+            <view:AddingObjectView />
         </DataTemplate>
     </Application.Resources>
 </Application>
