@@ -99,7 +99,7 @@ namespace DiscountCalculatorModel
         {
             get
             {
-                return InitialCost * (1 - Discount / 100);
+                return Math.Round(InitialCost * (1 - Discount / 100), 2);
             }
         }
 

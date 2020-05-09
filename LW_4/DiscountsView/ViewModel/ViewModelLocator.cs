@@ -32,6 +32,7 @@ namespace DiscountsView.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<AddingObjectViewModel>();
+            SimpleIoc.Default.Register<SearchViewModel>();
         }
 
         public MainViewModel MainViewModel

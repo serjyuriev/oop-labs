@@ -9,8 +9,9 @@
         Title="Discounts List Viewer" 
         WindowStartupLocation="CenterScreen"
         Height="450"
-        Width="500"
+        Width="600"
         ResizeMode="NoResize"
+        Background="#FF0088CC"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
     <Window.Resources>
         <Style x:Key="buttonStyle" TargetType="Button">
@@ -25,9 +26,11 @@
         </Grid.RowDefinitions>
         
         <DataGrid Grid.Row="0"
-                  ItemsSource="{Binding Sales}"
+                  ItemsSource="{Binding Sales, Mode=OneWay}"
+                  SelectedItem="{Binding SelectedSale}"
                   IsReadOnly="True"
-                  FontSize="14" />
+                  FontSize="14" 
+                  ItemStringFormat="#.##"/>
 
         <!-- Грид для кнопок -->
         <Grid Grid.Row="1">
@@ -35,15 +38,32 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" 
-                    Content="Add sale" 
+                    Content="Add sales" 
                     Style="{StaticResource buttonStyle}" 
                     Command="{Binding OpenAddingSaleWindowCommand}" />
             
             <Button Grid.Column="1" 
                     Content="Remove sale"
+                    Style="{StaticResource buttonStyle}" 
+                    Command="{Binding RemoveSaleCommand}" />
+
+            <Button Grid.Column="2" 
+                    Content="Find sales"
+                    Style="{StaticResource buttonStyle}" 
+                    Command="{Binding OpenSearchWindowCommand}" />
+
+            <Button Grid.Column="3" 
+                    Content="Load sales"
+                    Style="{StaticResource buttonStyle}" />
+
+            <Button Grid.Column="4" 
+                    Content="Save sales"
                     Style="{StaticResource buttonStyle}" />
 
         </Grid>

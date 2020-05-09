@@ -5,11 +5,12 @@
              xmlns:mc=
              "http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:DiscountsView.Views"
              mc:Ignorable="d"
              Height="250" 
              Width="250"
-             Background="#FF9FAEF0">
+             Background="#FF0088cc">
     <UserControl.Resources>
         <!-- TextBlock Style -->
         <Style x:Key="textBlockStyle" TargetType="TextBlock">
@@ -39,6 +40,7 @@
             <RowDefinition Height="0.5*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="{Binding LastGridHeight}" />
         </Grid.RowDefinitions>
 
         <TextBlock Text="Sale system"
@@ -69,7 +71,7 @@
                      Margin="15,7.5,7.5,7.5" 
                      HorizontalContentAlignment="Right"
                      Text="{Binding ElementName=comboboxSaleSystem,
-                         Path=SelectedItem.InitialCost}"
+                         Path=SelectedItem.InitialCost, StringFormat={}{0:#.##}}"
                      Style="{StaticResource textBoxStyle}" />
 
             <TextBlock Grid.Column="1" 
@@ -93,7 +95,8 @@
                      Margin="15,7.5,7.5,7.5" 
                      HorizontalContentAlignment="Right"
                      Text="{Binding ElementName=comboboxSaleSystem,
-                         Path=SelectedItem.Discount}"
+                         Path=SelectedItem.Discount,
+                         StringFormat={}{0:#.##}}"
                      Style="{StaticResource textBoxStyle}" />
 
             <TextBlock Grid.Column="1" 
@@ -113,13 +116,33 @@
             <Button Grid.Column="0"
                     Content="Add" 
                     Margin="15,10,7.5,10"
+                    Command="{Binding AddCreatedSale}"
                     Style="{StaticResource buttonStyle}" />
 
             <Button Grid.Column="1"
-                    Content="Cancel" 
+                    Content="Done" 
                     Margin="7.5,10,15,10"
-                    Style="{StaticResource buttonStyle}" />
+                    Style="{StaticResource buttonStyle}">
+                <!-- Закрытие окна через WPFBehaviors от Microsoft -->
+                <!-- Без codebehind, связывания VM и V и т.д. -->
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:CallMethodAction MethodName="Close"
+                                            TargetObject=
+                                            "{Binding RelativeSource=
+                                            {RelativeSource
+                                            Mode=FindAncestor,
+                                            AncestorType=Window}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
         </Grid>
+
+        <Button Grid.Row="7"
+                Content="Create Random Data" 
+                Style="{StaticResource buttonStyle}"
+                Command="{Binding CreateRandomDataCommand}"
+                Margin="15,7.5"/>
 
     </Grid>
 </UserControl>

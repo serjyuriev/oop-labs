@@ -16,17 +16,13 @@ using System.Windows.Shapes;
 namespace DiscountsView.Views
 {
     /// <summary>
-    /// Interaction logic for AddingObjectView.xaml
+    /// Interaction logic for SearchView.xaml
     /// </summary>
-    public partial class AddingObjectView : UserControl
+    public partial class SearchView : UserControl
     {
-        public AddingObjectView()
+        public SearchView()
         {
             InitializeComponent();
-
-#if DEBUG
-            this.Height += 50;
-#endif
         }
     }
 }

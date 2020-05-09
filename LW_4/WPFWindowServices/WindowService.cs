@@ -30,7 +30,7 @@ namespace WPFWindowServices
             window.ResizeMode = ResizeMode.NoResize;
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-            window.Show();
+            window.ShowDialog();
         }
     }
 }
