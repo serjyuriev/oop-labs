@@ -18,20 +18,24 @@ namespace DiscountsView.ViewModel
     /// </summary>
     public class AddingObjectViewModel : ViewModelBase
     {
-        private static Random _random = new Random();
-
         #region Properties
+        
+        public double WindowHeight
+        {
+#if DEBUG
+            get => 300;
+#else
+            get => 250;
+#endif
+        }
 
         public GridLength LastGridHeight
         {
-            get
-            {
 #if DEBUG
-                return new GridLength(1, GridUnitType.Star);
+                get => new GridLength(1, GridUnitType.Star);
 #else
-                return new GridLength(0);
+                get => new GridLength(0);
 #endif
-            }
         }
 
 #if DEBUG
@@ -99,7 +103,7 @@ namespace DiscountsView.ViewModel
 #if DEBUG
         private void CreateRandomData()
         {
-            var generatedValues = Randomizer.GetRandomValuesForSales(_random);
+            var generatedValues = Randomizer.GetRandomValuesForSales();
 
             SelectedSale = Sales[(int)generatedValues[0]];
             SelectedSale.InitialCost = generatedValues[1];

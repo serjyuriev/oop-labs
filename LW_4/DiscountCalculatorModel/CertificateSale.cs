@@ -77,7 +77,7 @@ namespace DiscountCalculatorModel
         {
             get
             {
-                var finalCost = InitialCost - Discount;
+                var finalCost = Math.Round(InitialCost - Discount, 2);
 
                 if (finalCost < 0)
                 {

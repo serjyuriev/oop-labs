@@ -23,10 +23,6 @@ namespace DiscountsView.Views
         public AddingObjectView()
         {
             InitializeComponent();
-
-#if DEBUG
-            this.Height += 50;
-#endif
         }
     }
 }

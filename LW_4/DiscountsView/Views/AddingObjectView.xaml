@@ -8,9 +8,9 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:DiscountsView.Views"
              mc:Ignorable="d"
-             Height="250" 
+             Height="{Binding WindowHeight}" 
              Width="250"
-             Background="#FF0088cc">
+             Background="#FF66C384">
     <UserControl.Resources>
         <!-- TextBlock Style -->
         <Style x:Key="textBlockStyle" TargetType="TextBlock">
@@ -55,7 +55,7 @@
                   FontSize="14" 
                   HorizontalContentAlignment="Center"
                   VerticalContentAlignment="Center" 
-                  Margin="15,5" />
+                  Margin="15,7.5,15,7.5" />
 
         <TextBlock Text="Initial cost"
                    Grid.Row="2"

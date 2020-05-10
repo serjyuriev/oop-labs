@@ -74,7 +74,6 @@ namespace DiscountsView.ViewModel
             set
             {
                 _selectedSale = value;
-                RaisePropertyChanged(nameof(SelectedSale));
             }
         }
 
