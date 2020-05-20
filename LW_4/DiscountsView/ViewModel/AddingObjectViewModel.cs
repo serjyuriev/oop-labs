@@ -1,46 +1,43 @@
 ﻿using DiscountCalculatorModel;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Command;
-using System;
+using GalaSoft.MvvmLight.Messaging;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xaml.Behaviors;
 using System.Windows;
 
 namespace DiscountsView.ViewModel
 {
     /// <summary>
-    /// ViewModel для окна AddingObjectWindow
+    /// Модель представления для окна добавления скидки
     /// </summary>
     public class AddingObjectViewModel : ViewModelBase
     {
         #region Properties
-        
-        public double WindowHeight
-        {
-#if DEBUG
-            get => 300;
-#else
-            get => 250;
-#endif
-        }
 
+        /// <summary>
+        /// Команда на создание новой скидки
+        /// </summary>
+        public RelayCommand AddCreatedSale { get; private set; }
+
+#if DEBUG
+        /// <summary>
+        /// Команда на заполнение полей случайными значениями
+        /// </summary>
+        public RelayCommand CreateRandomDataCommand { get; private set; }
+#endif
+
+        /// <summary>
+        /// Высота последнего Grid в окне
+        /// </summary>
         public GridLength LastGridHeight
         {
 #if DEBUG
-                get => new GridLength(1, GridUnitType.Star);
+            get => new GridLength(1, GridUnitType.Star);
 #else
                 get => new GridLength(0);
 #endif
         }
-
-#if DEBUG
-        public RelayCommand CreateRandomDataCommand { get; private set; }
-#endif
 
         /// <summary>
         /// Лист с доступными системами скидок
@@ -54,11 +51,18 @@ namespace DiscountsView.ViewModel
         public ISales SelectedSale { get; set; }
 
         /// <summary>
-        /// Команда на создание новой скидки
+        /// Высота окна
         /// </summary>
-        public RelayCommand AddCreatedSale { get; private set; }
+        public double WindowHeight
+        {
+#if DEBUG
+            get => 350;
+#else
+            get => 300;
+#endif
+        }
 
-#endregion
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the AddingObjectViewModel class
@@ -68,25 +72,27 @@ namespace DiscountsView.ViewModel
             RefreshList();
 
             AddCreatedSale = new RelayCommand(SendNewSaleToMainWindow);
-
 #if DEBUG
             CreateRandomDataCommand = new RelayCommand(CreateRandomData);
 #endif
         }
 
+        #region Methods
+
+#if DEBUG
         /// <summary>
-        /// Отправка заполненного объекта в лист
+        /// Заполнение полей случайными значениями
         /// </summary>
-        private void SendNewSaleToMainWindow()
+        private void CreateRandomData()
         {
-            if (!SelectedSale.HasErrors)
-            {
-                Messenger.Default.Send<GenericMessage<ISales>>(
-                    new GenericMessage<ISales>(SelectedSale));
-                
-                RefreshList();
-            }
+            var generatedValues = Randomizer.GetRandomValuesForSales();
+
+            SelectedSale = Sales[(int)generatedValues[0]];
+            SelectedSale.InitialCost = generatedValues[1];
+            SelectedSale.Discount = generatedValues[2];
+            RaisePropertyChanged(nameof(SelectedSale));
         }
+#endif
 
         /// <summary>
         /// Пересоздать список скидок
@@ -100,16 +106,19 @@ namespace DiscountsView.ViewModel
             RaisePropertyChanged(nameof(SelectedSale));
         }
 
-#if DEBUG
-        private void CreateRandomData()
+        /// <summary>
+        /// Отправка заполненного объекта в лист
+        /// </summary>
+        private void SendNewSaleToMainWindow()
         {
-            var generatedValues = Randomizer.GetRandomValuesForSales();
-
-            SelectedSale = Sales[(int)generatedValues[0]];
-            SelectedSale.InitialCost = generatedValues[1];
-            SelectedSale.Discount = generatedValues[2];
-            RaisePropertyChanged(nameof(SelectedSale));
+            if (!SelectedSale.HasErrors)
+            {
+                Messenger.Default.Send(SelectedSale);
+                
+                RefreshList();
+            }
         }
-#endif
+
+        #endregion
     }
 }

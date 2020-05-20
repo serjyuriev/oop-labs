@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscountCalculatorModel
 {
+    /// <summary>
+    /// Класс для генерации случайных значений полей
+    /// </summary>
     public static class Randomizer
     {
         /// <summary>

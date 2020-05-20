@@ -8,14 +8,10 @@ namespace DiscountCalculatorModel
     /// <summary>
     /// Процентная система скидки
     /// </summary>
+    [Serializable]
     public class PercentSale : ISales
     {
         #region Fields
-
-        /// <summary>
-        /// Цена без учета скидки
-        /// </summary>
-        private double _initialCost;
 
         /// <summary>
         /// Размер скидки в процентах
@@ -28,35 +24,14 @@ namespace DiscountCalculatorModel
         private Dictionary<string, List<string>> _errors =
             new Dictionary<string, List<string>>();
 
-        #endregion
-
-        #region Properties
-
         /// <summary>
         /// Цена без учета скидки
         /// </summary>
-        public double InitialCost
-        {
-            get => _initialCost;
-            set
-            {
-                if (value < 0)
-                {
-                    var errors = new List<string>
-                    {
-                        $"{nameof(InitialCost)} can " +
-                        $"only be positive!"
-                    };
-                    SetErrors(nameof(InitialCost), errors);
-                }
-                else
-                {
-                    _initialCost = value;
-                    ClearErrors(nameof(InitialCost));
-                    OnPropertyChanged(nameof(FinalCost));
-                }
-            }
-        }
+        private double _initialCost;
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// Размер скидки в процентах
@@ -104,19 +79,45 @@ namespace DiscountCalculatorModel
         }
 
         /// <summary>
-        /// Имя системы скидок
-        /// </summary>
-        public string Name
-        {
-            get => "Percent";
-        }
-
-        /// <summary>
         /// Имеются ли ошибки в данном классе
         /// </summary>
         public bool HasErrors
         {
             get => _errors.Count > 0;
+        }
+
+        /// <summary>
+        /// Цена без учета скидки
+        /// </summary>
+        public double InitialCost
+        {
+            get => _initialCost;
+            set
+            {
+                if (value < 0)
+                {
+                    var errors = new List<string>
+                    {
+                        $"{nameof(InitialCost)} can " +
+                        $"only be positive!"
+                    };
+                    SetErrors(nameof(InitialCost), errors);
+                }
+                else
+                {
+                    _initialCost = value;
+                    ClearErrors(nameof(InitialCost));
+                    OnPropertyChanged(nameof(FinalCost));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Имя системы скидок
+        /// </summary>
+        public string Name
+        {
+            get => "Percent";
         }
 
         #endregion
@@ -144,46 +145,20 @@ namespace DiscountCalculatorModel
         #region Events
 
         /// <summary>
-        /// Событие изменения свойства
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
         /// Событие появления/исчезновения ошибки
         /// </summary>
+        [field: NonSerialized]
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        /// <summary>
+        /// Событие изменения свойства
+        /// </summary>
+        [field: NonSerialized]
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Запуск обновления элемента интерфейса?
-        /// </summary>
-        /// <param name="propertyName">Название свойства, в котором
-        /// произошло изменение</param>
-        public void OnPropertyChanged(string propertyName = "")
-        {
-            PropertyChanged?.Invoke(
-                this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        /// <summary>
-        /// Добавить ошибки в коллекцию
-        /// </summary>
-        /// <param name="propertyName">Название свойства, в котором
-        /// возникла ошибка</param>
-        /// <param name="propertyErrors">Список с ошибками 
-        /// данного свойства</param>
-        private void SetErrors(string propertyName, 
-            List<string> propertyErrors)
-        {
-            _errors.Remove(propertyName);
-            _errors.Add(propertyName, propertyErrors);
-
-            ErrorsChanged?.Invoke(
-                this, new DataErrorsChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Очистить коллекцию ошибок от списка ошибок указанного свойства
@@ -220,6 +195,34 @@ namespace DiscountCalculatorModel
                     return null;
                 }
             }
+        }
+
+        /// <summary>
+        /// Запуск обновления элемента интерфейса
+        /// </summary>
+        /// <param name="propertyName">Название свойства, в котором
+        /// произошло изменение</param>
+        public void OnPropertyChanged(string propertyName = "")
+        {
+            PropertyChanged?.Invoke(
+                this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// Добавить ошибки в коллекцию
+        /// </summary>
+        /// <param name="propertyName">Название свойства, в котором
+        /// возникла ошибка</param>
+        /// <param name="propertyErrors">Список с ошибками 
+        /// данного свойства</param>
+        private void SetErrors(string propertyName, 
+            List<string> propertyErrors)
+        {
+            _errors.Remove(propertyName);
+            _errors.Add(propertyName, propertyErrors);
+
+            ErrorsChanged?.Invoke(
+                this, new DataErrorsChangedEventArgs(propertyName));
         }
 
         #endregion

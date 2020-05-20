@@ -2,12 +2,12 @@ using DiscountCalculatorModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using SerializationServices;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-using System.Security.Policy;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using WPFWindowServices;
 
 namespace DiscountsView.ViewModel
@@ -15,34 +15,43 @@ namespace DiscountsView.ViewModel
     /// <summary>
     /// Модель представления главного окна программы
     /// </summary>
+    [Serializable]
     public class MainViewModel : ViewModelBase
     {
         #region Fields
+
+        /// <summary>
+        /// Модель представления окна добавления объекта
+        /// </summary>
+        private readonly AddingObjectViewModel _addingObjectViewModel =
+            new AddingObjectViewModel();
+
+        /// <summary>
+        /// Путь до папки сохранения файла
+        /// </summary>
+        private readonly string _pathToDataFolder = 
+            $@"{Environment.GetFolderPath(
+                Environment.SpecialFolder.Desktop)}\Sales";
+
+        /// <summary>
+        /// Модель представления окна поиска
+        /// </summary>
+        private readonly SearchViewModel _searchViewModel =
+            new SearchViewModel();
 
         /// <summary>
         /// Сервис для открытия окна
         /// </summary>
         private readonly IWindowService _windowService = new WindowService();
 
-        /// <summary>
-        /// Модель представления окна добавления объекта
-        /// </summary>
-        private AddingObjectViewModel _addingObjectViewModel =
-            new AddingObjectViewModel();
-
-        /// <summary>
-        /// Модель представления окна поиска
-        /// </summary>
-        private SearchViewModel _searchViewModel = new SearchViewModel();
-
-        /// <summary>
-        /// Выбранная в списке скидка
-        /// </summary>
-        private ISales _selectedSale;
-
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Команда на загрузку данных
+        /// </summary>
+        public RelayCommand LoadSalesCommand { get; private set; }
 
         /// <summary>
         /// Команда на открытие окна добавления скидки
@@ -62,20 +71,18 @@ namespace DiscountsView.ViewModel
         /// <summary>
         /// Список систем скидок
         /// </summary>
-        public IList<ISales> Sales { get; } =
+        public IList<ISales> Sales { get; private set; } =
             new ObservableCollection<ISales>();
+
+        /// <summary>
+        /// Команда на сохранение данных
+        /// </summary>
+        public RelayCommand SaveSalesCommand { get; private set; }
 
         /// <summary>
         /// Выбранная в списке скидка
         /// </summary>
-        public ISales SelectedSale
-        {
-            get => _selectedSale;
-            set
-            {
-                _selectedSale = value;
-            }
-        }
+        public ISales SelectedSale { get; set; }
 
         #endregion
 
@@ -95,12 +102,50 @@ namespace DiscountsView.ViewModel
                 OpenAddingSaleWindow);
             OpenSearchWindowCommand = new RelayCommand(OpenSearchWindow);
             RemoveSaleCommand = new RelayCommand(RemoveSale);
+            SaveSalesCommand = new RelayCommand(SaveSales);
+            LoadSalesCommand = new RelayCommand(LoadSales);
 
-            Messenger.Default.Register<GenericMessage<ISales>>(
+            // Регистрация сообщений о добавлении новой скидки
+            Messenger.Default.Register<ISales>(
                 this, AddSaleIntoList);
         }
 
         #region Methods
+
+        /// <summary>
+        /// Добавление в список новой скидки
+        /// </summary>
+        /// <param name="sale">Сообщение от VM окна добавления скидки</param>
+        private void AddSaleIntoList(ISales sale)
+        {
+            Sales.Add(sale);
+        }
+
+        /// <summary>
+        /// Загрузить данные из файла
+        /// </summary>
+        private void LoadSales()
+        {
+            try
+            {
+                Sales = new ObservableCollection<ISales>(
+                    Serializer.DeserializeData<ISales>(
+                        System.IO.Directory.GetFiles(_pathToDataFolder)[0]));
+                RaisePropertyChanged(nameof(Sales));
+            }
+            catch (IndexOutOfRangeException)
+            {
+                MessageBox.Show("Файла не существует!",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                MessageBox.Show("Директории не существует!",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+        }
 
         /// <summary>
         /// Открытие окна "Adding new sale"
@@ -116,19 +161,14 @@ namespace DiscountsView.ViewModel
         /// </summary>
         private void OpenSearchWindow()
         {
+            Messenger.Default.Send(Sales);
             _windowService.ShowWindow(
                 _searchViewModel, "Search sales");
         }
 
         /// <summary>
-        /// Добавление в список новой скидки
+        /// Удаление скидки
         /// </summary>
-        /// <param name="sale">Сообщение от VM окна добавления скидки</param>
-        private void AddSaleIntoList(GenericMessage<ISales> sale)
-        {
-            Sales.Add(sale.Content);
-        }
-
         private void RemoveSale()
         {
             if (SelectedSale is object)
@@ -136,6 +176,21 @@ namespace DiscountsView.ViewModel
                 Sales.Remove(SelectedSale);
                 RaisePropertyChanged(nameof(Sales));
             }
+        }
+
+        /// <summary>
+        /// Сохранить данные в файл
+        /// </summary>
+        private void SaveSales()
+        {
+            if (!Directory.Exists(_pathToDataFolder))
+            {
+                Directory.CreateDirectory(_pathToDataFolder);
+            }
+
+            Serializer.SerializeData<ISales>(
+                new List<ISales>(Sales), 
+                $@"{_pathToDataFolder}\test.ads");
         }
 
         #endregion

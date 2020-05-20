@@ -8,14 +8,14 @@ namespace DiscountCalculatorModel
     public interface ISales : INotifyPropertyChanged, INotifyDataErrorInfo
     {
         /// <summary>
-        /// Цена товара без учета скидки
-        /// </summary>
-        double InitialCost { get; set; }
-
-        /// <summary>
         /// Размер скидки
         /// </summary>
         double Discount { get; set; }
+
+        /// <summary>
+        /// В чем измеряется скидка
+        /// </summary>
+        string DiscountMeasure { get; }
 
         /// <summary>
         /// Цена с учетом скидки
@@ -23,9 +23,9 @@ namespace DiscountCalculatorModel
         double FinalCost { get; }
 
         /// <summary>
-        /// В чем измеряется скидка
+        /// Цена товара без учета скидки
         /// </summary>
-        string DiscountMeasure { get; }
+        double InitialCost { get; set; }
 
         /// <summary>
         /// Название системы скидки

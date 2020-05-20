@@ -7,10 +7,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:DiscountsView.Views"
+             xmlns:dtb="clr-namespace:DiscountsView.Utility"
              mc:Ignorable="d"
              Height="{Binding WindowHeight}" 
-             Width="250"
-             Background="#FF66C384">
+             Width="250">
     <UserControl.Resources>
         <!-- TextBlock Style -->
         <Style x:Key="textBlockStyle" TargetType="TextBlock">
@@ -18,19 +18,27 @@
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
         </Style>
-        
+
         <!-- TextBox Style -->
         <Style x:Key="textBoxStyle" TargetType="TextBox">
             <Setter Property="FontSize" Value="14" />
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
-        
+
         <!-- Button Style -->
         <Style x:Key="buttonStyle" TargetType="Button">
             <Setter Property="FontSize" Value="12" />
         </Style>
     </UserControl.Resources>
+    
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFDEDEDE" Offset="0"/>
+            <GradientStop Color="#FFCBDCF9" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*" />
@@ -55,7 +63,7 @@
                   FontSize="14" 
                   HorizontalContentAlignment="Center"
                   VerticalContentAlignment="Center" 
-                  Margin="15,7.5,15,7.5" />
+                  Margin="15,7.5,15,15" />
 
         <TextBlock Text="Initial cost"
                    Grid.Row="2"
@@ -67,18 +75,19 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="0"
-                     Margin="15,7.5,7.5,7.5" 
-                     HorizontalContentAlignment="Right"
-                     Text="{Binding ElementName=comboboxSaleSystem,
-                         Path=SelectedItem.InitialCost, StringFormat={}{0:#.##}}"
-                     Style="{StaticResource textBoxStyle}" />
+            <dtb:DoubleTextBox Grid.Column="0"
+                               Margin="15,7.5,7.5,15" 
+                               HorizontalContentAlignment="Right"
+                               Text="{Binding ElementName=comboboxSaleSystem,
+                                    Path=SelectedItem.InitialCost}"
+                               Style="{StaticResource textBoxStyle}">
+            </dtb:DoubleTextBox>
 
             <TextBlock Grid.Column="1" 
                        Text="rub"
                        Style="{StaticResource textBlockStyle}"
                        VerticalAlignment="Center" 
-                       Margin="0,0,15,0"/>
+                       Margin="0,7.5,15,15"/>
         </Grid>
 
         <TextBlock Text="Discount"
@@ -91,20 +100,31 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="0"
-                     Margin="15,7.5,7.5,7.5" 
-                     HorizontalContentAlignment="Right"
-                     Text="{Binding ElementName=comboboxSaleSystem,
-                         Path=SelectedItem.Discount,
-                         StringFormat={}{0:#.##}}"
-                     Style="{StaticResource textBoxStyle}" />
+            <dtb:DoubleTextBox Grid.Column="0"
+                               Margin="15,7.5,7.5,15" 
+                               HorizontalContentAlignment="Right"
+                               Text="{Binding ElementName=comboboxSaleSystem,
+                                    Path=SelectedItem.Discount,
+                                    ValidatesOnDataErrors=True}"
+                               Style="{StaticResource textBoxStyle}">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" 
+                                       Foreground="Red"
+                                       TextAlignment="Center"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </dtb:DoubleTextBox>
 
             <TextBlock Grid.Column="1" 
                        Text="{Binding ElementName=comboboxSaleSystem, 
                            Path=SelectedItem.DiscountMeasure}"
                        Style="{StaticResource textBlockStyle}"
                        VerticalAlignment="Center"  
-                       Margin="0,0,15,0"/>
+                       Margin="0,7.5,15,15"/>
         </Grid>
 
         <Grid Grid.Row="6">
@@ -115,13 +135,13 @@
 
             <Button Grid.Column="0"
                     Content="Add" 
-                    Margin="15,10,7.5,10"
+                    Margin="15,15,7.5,15"
                     Command="{Binding AddCreatedSale}"
                     Style="{StaticResource buttonStyle}" />
 
             <Button Grid.Column="1"
                     Content="Done" 
-                    Margin="7.5,10,15,10"
+                    Margin="7.5,15,15,15"
                     Style="{StaticResource buttonStyle}">
                 <!-- Закрытие окна через WPFBehaviors от Microsoft -->
                 <!-- Без codebehind, связывания VM и V и т.д. -->

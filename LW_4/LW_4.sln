@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountsView", "DiscountsV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFWindowServices", "WPFWindowServices\WPFWindowServices.csproj", "{6966FE5C-35EC-4B7E-91EA-145BD7271A78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationServices", "SerializationServices\SerializationServices.csproj", "{46107C8F-EF91-4BFF-A386-CB1CB11A35A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6966FE5C-35EC-4B7E-91EA-145BD7271A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6966FE5C-35EC-4B7E-91EA-145BD7271A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6966FE5C-35EC-4B7E-91EA-145BD7271A78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46107C8F-EF91-4BFF-A386-CB1CB11A35A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46107C8F-EF91-4BFF-A386-CB1CB11A35A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46107C8F-EF91-4BFF-A386-CB1CB11A35A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46107C8F-EF91-4BFF-A386-CB1CB11A35A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

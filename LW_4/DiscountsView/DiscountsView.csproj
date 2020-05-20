@@ -73,6 +73,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utility\DoubleTextBox.cs" />
     <Compile Include="ViewModel\AddingObjectViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
@@ -135,6 +136,10 @@
     <ProjectReference Include="..\DiscountCalculatorModel\DiscountCalculatorModel.csproj">
       <Project>{51152a50-557f-42a0-9fbc-145038d1e772}</Project>
       <Name>DiscountCalculatorModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SerializationServices\SerializationServices.csproj">
+      <Project>{46107c8f-ef91-4bff-a386-cb1cb11a35a4}</Project>
+      <Name>SerializationServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\WPFWindowServices\WPFWindowServices.csproj">
       <Project>{6966fe5c-35ec-4b7e-91ea-145bd7271a78}</Project>

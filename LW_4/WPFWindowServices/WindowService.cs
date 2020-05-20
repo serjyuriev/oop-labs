@@ -15,20 +15,25 @@ namespace WPFWindowServices
         /// <param name="title">Заголовок окна</param>
         public void ShowWindow(object viewModel, string title)
         {
-            var contentUI = new ContentControl();
-            contentUI.Content = viewModel;
+            var contentUI = new ContentControl
+            {
+                Content = viewModel
+            };
 
             var dockPanel = new DockPanel();
             dockPanel.Children.Add(contentUI);
 
-            var window = new Window();
-            window.Content = dockPanel;
+            var window = new Window
+            {
+                Content = dockPanel,
 
-            // Настройки внешнего вида окна
-            window.SizeToContent = SizeToContent.WidthAndHeight;
-            window.Title = title;
-            window.ResizeMode = ResizeMode.NoResize;
-            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                // Настройки внешнего вида окна
+                SizeToContent = SizeToContent.WidthAndHeight,
+                Title = title,
+                ResizeMode = ResizeMode.NoResize,
+                WindowStartupLocation =
+                WindowStartupLocation.CenterScreen
+            };
 
             window.ShowDialog();
         }

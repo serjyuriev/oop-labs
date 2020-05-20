@@ -1,58 +1,177 @@
 ﻿using DiscountCalculatorModel;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Command;
-using System;
+using GalaSoft.MvvmLight.Messaging;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+
 namespace DiscountsView.ViewModel
 {
+    /// <summary>
+    /// Модель представления для окна поиска
+    /// </summary>
     public class SearchViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Исходный лист скидок на момент открытия окна
+        /// </summary>
+        private IList<ISales> _initialSales;
+
         #region Properties
+        
+        /// <summary>
+        /// Команда на осуществление поиска
+        /// </summary>
+        public RelayCommand ApplyCommand { get; private set; }
 
         /// <summary>
-        /// Команда на очистку введенных данных
+        /// Команда на очистку полей окна от введенных данных
         /// </summary>
         public RelayCommand ClearDataCommand { get; private set; }
 
         /// <summary>
-        /// Возможные типы скидок
+        /// Текущий лист скидок
         /// </summary>
-        public List<string> SaleTypes { get; set; } = new List<string>();
+        public IList<ISales> CurrentSales { get; private set; }
 
         /// <summary>
-        /// Индекс выбранной системы
+        /// Выбран поиск по размеру скидки
         /// </summary>
-        public int SelectedIndex { get; set; }
+        public bool IsDiscountEnabled { get; set; }
 
-        public string InitialCost { get; set; }
+        /// <summary>
+        /// Выбран поиск по исходной цене
+        /// </summary>
+        public bool IsInitialCostEnabled { get; set; }
 
-        public string Discount { get; set; }
+        /// <summary>
+        /// Выбран поиск по типу скидки
+        /// </summary>
+        public bool IsSaleSystemEnabled { get; set; }
+
+        /// <summary>
+        /// Список возможных типов скидки
+        /// </summary>
+        public List<ISales> Sales { get; private set; } =
+            new List<ISales>();
+
+        /// <summary>
+        /// Скидка для заполнения поисковых полей
+        /// </summary>
+        public ISales SaleToFill { get; private set; }
+
+        /// <summary>
+        /// Выбранный тип скидки в окне поиска
+        /// </summary>
+        public ISales SelectedSale { get; set; }
 
         #endregion
 
+        /// <summary>
+        /// Модель представления для окна поиска
+        /// </summary>
         public SearchViewModel()
         {
-            SaleTypes.Add("Percent");
-            SaleTypes.Add("Certificate");
-            SelectedIndex = -1;
+            SaleToFill = new CertificateSale();
 
+            Sales.Add(new PercentSale());
+            Sales.Add(new CertificateSale());
+            SelectedSale = Sales[0];
+
+            ApplyCommand = new RelayCommand(Apply);
             ClearDataCommand = new RelayCommand(ClearData);
+
+            // Подписка на рассылку текущего списка скидок
+            Messenger.Default.Register<IList<ISales>>(
+                this, ReceiveCurrentSales);
         }
 
+        #region Methods
+
+        /// <summary>
+        /// Осуществить поиск по заданным параметрам
+        /// </summary>
+        private void Apply()
+        {
+            if (IsSaleSystemEnabled)
+            {
+                foreach (ISales sale in _initialSales)
+                {
+                    if (sale.GetType() != SelectedSale.GetType())
+                    {
+                        CurrentSales.Remove(sale);
+                    }
+                }
+            }
+
+            if (IsInitialCostEnabled)
+            {
+                foreach (ISales sale in _initialSales)
+                {
+                    if (sale.InitialCost != SaleToFill.InitialCost)
+                    {
+                        CurrentSales.Remove(sale);
+                    }
+                }
+            }
+
+            if (IsDiscountEnabled)
+            {
+                foreach (ISales sale in _initialSales)
+                {
+                    if (sale.Discount != SaleToFill.Discount)
+                    {
+                        CurrentSales.Remove(sale);
+                    }
+                }
+            }
+
+            if (!IsSaleSystemEnabled && !IsInitialCostEnabled && 
+                !IsDiscountEnabled)
+            {
+                var isInside = false;
+
+                for (int i = 0; i < _initialSales.Count; i++)
+                {
+                    for (int j = 0; j < CurrentSales.Count; j++)
+                    {
+                        if (_initialSales[i] == CurrentSales[j])
+                        {
+                            isInside = true;
+                            break;
+                        }
+                    }
+
+                    if (isInside)
+                    {
+                        isInside = false;
+                    }
+                    else
+                    {
+                        CurrentSales.Add(_initialSales[i]);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Очистить поля поиска
+        /// </summary>
         private void ClearData()
         {
-            SelectedIndex = -1;
-            RaisePropertyChanged(nameof(SelectedIndex));
-            InitialCost = null;
-            RaisePropertyChanged(nameof(InitialCost));
-            Discount = null;
-            RaisePropertyChanged(nameof(Discount));
+            SaleToFill = new CertificateSale();
+            RaisePropertyChanged(nameof(SaleToFill));
         }
+
+        /// <summary>
+        /// Принять текущий лист скидок
+        /// </summary>
+        /// <param name="sales">Лист скидок из сообщения</param>
+        private void ReceiveCurrentSales(IList<ISales> sales)
+        {
+            CurrentSales = sales;
+            _initialSales = new List<ISales>(CurrentSales);
+        }
+
+        #endregion
     }
 }
