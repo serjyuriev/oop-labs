@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using SerializationServices;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -64,7 +65,7 @@ namespace DiscountsView.ViewModel
         /// <summary>
         /// Команда на удаление выбранной строки со скидкой
         /// </summary>
-        public RelayCommand RemoveSaleCommand { get; private set; }
+        public RelayCommand<IList> RemoveSaleCommand { get; private set; }
 
         /// <summary>
         /// Список систем скидок
@@ -81,8 +82,6 @@ namespace DiscountsView.ViewModel
         /// Выбранная в списке скидка
         /// </summary>
         public ISales SelectedSale { get; set; }
-
-        public List<ISales> SelectedItems { get; set; }
 
         #endregion
 
@@ -101,7 +100,7 @@ namespace DiscountsView.ViewModel
             OpenAddingSaleWindowCommand = new RelayCommand(
                 OpenAddingSaleWindow);
             OpenSearchWindowCommand = new RelayCommand(OpenSearchWindow);
-            RemoveSaleCommand = new RelayCommand(RemoveSale);
+            RemoveSaleCommand = new RelayCommand<IList>(RemoveSale);
             SaveSalesCommand = new RelayCommand(SaveSales);
             LoadSalesCommand = new RelayCommand(LoadSales);
 
@@ -180,13 +179,24 @@ namespace DiscountsView.ViewModel
         /// <summary>
         /// Удаление скидки
         /// </summary>
-        private void RemoveSale()
+        /// <param name="items">Выбранные скидки</param>
+        private void RemoveSale(object items)
         {
-            if (SelectedSale is object)
+            var selection = items as IList;
+            var count = selection.Count;
+            var counter = 0;
+
+            while (counter < count)
             {
-                Sales.Remove(SelectedSale);
-                RaisePropertyChanged(nameof(Sales));
+                Sales.Remove(selection[0] as ISales);
+                counter++;
             }
+            
+            RaisePropertyChanged(nameof(Sales));
+            //if (SelectedSale is object)
+            //{
+                //Sales.Remove(SelectedSale);
+            //}
         }
 
         /// <summary>

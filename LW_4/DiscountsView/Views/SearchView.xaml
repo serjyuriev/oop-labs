@@ -30,6 +30,8 @@
         <Style x:Key="buttonStyle" TargetType="Button">
             <Setter Property="FontSize" Value="12" />
         </Style>
+
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
     </UserControl.Resources>
     
     <UserControl.Background>
@@ -151,6 +153,9 @@
                        Text="{Binding ElementName=comboboxSaleSystem, 
                            Path=SelectedItem.DiscountMeasure}"
                        Style="{StaticResource textBlockStyle}"
+                       Visibility="{Binding ElementName=saleSystemCheckBox, 
+                           Path=IsChecked,
+                           Converter={StaticResource VisibleIfTrueConverter}}"
                        VerticalAlignment="Center"  
                        Margin="0,0,10,0"/>
         </Grid>
