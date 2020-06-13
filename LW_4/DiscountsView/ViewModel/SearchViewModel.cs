@@ -24,6 +24,11 @@ namespace DiscountsView.ViewModel
         public RelayCommand ApplyCommand { get; private set; }
 
         /// <summary>
+        /// Команда на отмену результатов поиска
+        /// </summary>
+        public RelayCommand CancelSearchCommand { get; private set; }
+
+        /// <summary>
         /// Команда на очистку полей окна от введенных данных
         /// </summary>
         public RelayCommand ClearDataCommand { get; private set; }
@@ -78,6 +83,7 @@ namespace DiscountsView.ViewModel
             SelectedSale = Sales[0];
 
             ApplyCommand = new RelayCommand(Apply);
+            CancelSearchCommand = new RelayCommand(CancelSearch);
             ClearDataCommand = new RelayCommand(ClearData);
 
             // Подписка на рассылку текущего списка скидок
@@ -128,27 +134,35 @@ namespace DiscountsView.ViewModel
             if (!IsSaleSystemEnabled && !IsInitialCostEnabled && 
                 !IsDiscountEnabled)
             {
-                var isInside = false;
+                CancelSearch();
+            }
+        }
 
-                for (int i = 0; i < _initialSales.Count; i++)
+        /// <summary>
+        /// Отменить результаты поиска
+        /// </summary>
+        private void CancelSearch()
+        {
+            var isInside = false;
+
+            for (int i = 0; i < _initialSales.Count; i++)
+            {
+                for (int j = 0; j < CurrentSales.Count; j++)
                 {
-                    for (int j = 0; j < CurrentSales.Count; j++)
+                    if (_initialSales[i] == CurrentSales[j])
                     {
-                        if (_initialSales[i] == CurrentSales[j])
-                        {
-                            isInside = true;
-                            break;
-                        }
+                        isInside = true;
+                        break;
                     }
+                }
 
-                    if (isInside)
-                    {
-                        isInside = false;
-                    }
-                    else
-                    {
-                        CurrentSales.Add(_initialSales[i]);
-                    }
+                if (isInside)
+                {
+                    isInside = false;
+                }
+                else
+                {
+                    CurrentSales.Add(_initialSales[i]);
                 }
             }
         }

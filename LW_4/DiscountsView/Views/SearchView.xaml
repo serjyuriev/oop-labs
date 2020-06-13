@@ -90,7 +90,8 @@
                   Grid.Row="1"
                   ItemsSource="{Binding Sales}"
                   DisplayMemberPath="Name" 
-                  SelectedItem="{Binding SelectedSale}"
+                  SelectedItem="{Binding SelectedSale, 
+                      ValidatesOnNotifyDataErrors=False}"
                   FontSize="14" 
                   IsEnabled="{Binding ElementName=saleSystemCheckBox, 
                     Path=IsChecked}"
@@ -105,7 +106,8 @@
 
         <Grid Grid.Row="3"
               Grid.Column="1"
-              DataContext="{Binding SaleToFill, ValidatesOnNotifyDataErrors=False}">
+              DataContext="{Binding SaleToFill, 
+                  ValidatesOnNotifyDataErrors=False}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="*" />
@@ -114,7 +116,8 @@
             <dtb:DoubleTextBox Grid.Column="0"
                                Margin="10,7.5,7.5,7.5" 
                                HorizontalContentAlignment="Right"
-                               Text="{Binding InitialCost}"
+                               Text="{Binding InitialCost, 
+                                   ValidatesOnNotifyDataErrors=False}"
                                IsEnabled=
                                "{Binding ElementName=initialCostCheckBox, 
                                                    Path=IsChecked}"
@@ -134,7 +137,8 @@
 
         <Grid Grid.Row="5"
               Grid.Column="1"
-              DataContext="{Binding SaleToFill, ValidatesOnNotifyDataErrors=False}">
+              DataContext="{Binding SaleToFill, 
+                  ValidatesOnNotifyDataErrors=False}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="*" />
@@ -143,7 +147,8 @@
             <dtb:DoubleTextBox Grid.Column="0"
                                Margin="10,7.5,7.5,7.5" 
                                HorizontalContentAlignment="Right"
-                               Text="{Binding Discount}"
+                               Text="{Binding Discount, 
+                                   ValidatesOnNotifyDataErrors=False}"
                                Style="{StaticResource textBoxStyle}" 
                                IsEnabled=
                                "{Binding ElementName=discountCheckBox, 
@@ -155,7 +160,8 @@
                        Style="{StaticResource textBlockStyle}"
                        Visibility="{Binding ElementName=saleSystemCheckBox, 
                            Path=IsChecked,
-                           Converter={StaticResource VisibleIfTrueConverter}}"
+                           Converter=
+                           {StaticResource VisibleIfTrueConverter}}"
                        VerticalAlignment="Center"  
                        Margin="0,0,10,0"/>
         </Grid>
@@ -184,7 +190,8 @@
             <Button Grid.Column="2"
                     Content="Cancel" 
                     Margin="5,10,10,10"
-                    Style="{StaticResource buttonStyle}">
+                    Style="{StaticResource buttonStyle}"
+                    Command="{Binding CancelSearchCommand}">
                 <!-- Закрытие окна через WPFBehaviors от Microsoft -->
                 <!-- Без codebehind, связывания VM и V и т.д. -->
                 <i:Interaction.Triggers>
