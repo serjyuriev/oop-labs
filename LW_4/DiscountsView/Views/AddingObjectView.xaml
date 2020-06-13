@@ -59,7 +59,7 @@
                   Grid.Row="1"
                   ItemsSource="{Binding Sales}"
                   DisplayMemberPath="Name"
-                  SelectedItem="{Binding SelectedSale}"
+                  SelectedItem="{Binding SelectedSale, UpdateSourceTrigger=PropertyChanged}"
                   FontSize="14" 
                   HorizontalContentAlignment="Center"
                   VerticalContentAlignment="Center" 
@@ -81,6 +81,16 @@
                                Text="{Binding ElementName=comboboxSaleSystem,
                                     Path=SelectedItem.InitialCost}"
                                Style="{StaticResource textBoxStyle}">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" 
+                                       Foreground="Red"
+                                       TextAlignment="Center"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
             </dtb:DoubleTextBox>
 
             <TextBlock Grid.Column="1" 
@@ -105,7 +115,8 @@
                                HorizontalContentAlignment="Right"
                                Text="{Binding ElementName=comboboxSaleSystem,
                                     Path=SelectedItem.Discount,
-                                    ValidatesOnDataErrors=True}"
+                                    ValidatesOnDataErrors=True,
+                                    UpdateSourceTrigger=PropertyChanged}"
                                Style="{StaticResource textBoxStyle}">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>

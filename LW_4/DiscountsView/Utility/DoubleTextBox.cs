@@ -14,7 +14,7 @@ namespace DiscountsView.Utility
         /// Регулярное выражение для текста в TextBox
         /// </summary>
         private static readonly Regex _regex = 
-            new Regex(@"\d*\.?\d*");
+            new Regex(@"\d*\.?\d{0,2}");
 
         /// <summary>
         /// Проверка соответствия регулярному выражению при вводе текста

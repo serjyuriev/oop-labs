@@ -6,10 +6,11 @@
         xmlns:mc=
         "http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiscountsView"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Discounts List Viewer" 
         WindowStartupLocation="CenterScreen"
-        Height="450"
+        Height="200"
         Width="550"
         ResizeMode="NoResize"
         DataContext="{Binding Source={StaticResource Locator}, 
@@ -36,12 +37,34 @@
         <DataGrid Grid.Column="1"
                   ItemsSource="{Binding Sales, Mode=OneWay}"
                   SelectedItem="{Binding SelectedSale}"
+                  AutoGenerateColumns="False"
                   IsReadOnly="True"
                   FontSize="14" 
-                  ItemStringFormat="#.##" />
+                  ItemStringFormat="#.##">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Type of sale" 
+                                    Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Initial cost" 
+                                    Binding="{Binding InitialCost}" />
+                <DataGridTextColumn Header="Discount" 
+                                    Binding="{Binding Discount}" />
+                <DataGridTextColumn Header="Measure" 
+                                    Binding="{Binding DiscountMeasure}" />
+                <DataGridTextColumn Header="Final cost" 
+                                    Binding="{Binding FinalCost}" />
+            </DataGrid.Columns>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectItemsCommand}" 
+                                           CommandParameter="{Binding Path=SelectedItems, 
+                                           ElementName=MainViewModel}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </DataGrid>
 
         <!-- Грид для кнопок -->
         <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Center"
                     Margin="0,5,0,0">
             <Button Content="Add sales" 
                     Style="{StaticResource buttonStyle}" 

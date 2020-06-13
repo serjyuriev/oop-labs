@@ -23,15 +23,13 @@ namespace DiscountsView.ViewModel
         /// <summary>
         /// Модель представления окна добавления объекта
         /// </summary>
-        private readonly AddingObjectViewModel _addingObjectViewModel =
+        private readonly AddingObjectViewModel _addingObjectViewModel = 
             new AddingObjectViewModel();
 
         /// <summary>
         /// Путь до папки сохранения файла
         /// </summary>
-        private readonly string _pathToDataFolder = 
-            $@"{Environment.GetFolderPath(
-                Environment.SpecialFolder.Desktop)}\Sales";
+        private string _pathToSaveFile;
 
         /// <summary>
         /// Модель представления окна поиска
@@ -84,6 +82,8 @@ namespace DiscountsView.ViewModel
         /// </summary>
         public ISales SelectedSale { get; set; }
 
+        public List<ISales> SelectedItems { get; set; }
+
         #endregion
 
         /// <summary>
@@ -126,11 +126,16 @@ namespace DiscountsView.ViewModel
         /// </summary>
         private void LoadSales()
         {
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.Filter = "svy files (.svy)|*.svy";
+            dialog.Title = "Opening list";
+            dialog.ShowDialog();
+            _pathToSaveFile = dialog.FileName;
+
             try
             {
                 Sales = new ObservableCollection<ISales>(
-                    Serializer.DeserializeData<ISales>(
-                        System.IO.Directory.GetFiles(_pathToDataFolder)[0]));
+                    Serializer.DeserializeData<ISales>(_pathToSaveFile));
                 RaisePropertyChanged(nameof(Sales));
             }
             catch (IndexOutOfRangeException)
@@ -142,6 +147,12 @@ namespace DiscountsView.ViewModel
             catch (DirectoryNotFoundException)
             {
                 MessageBox.Show("Директории не существует!",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            catch (System.Runtime.Serialization.SerializationException)
+            {
+                MessageBox.Show("Файл поврежден!",
                     "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -183,14 +194,14 @@ namespace DiscountsView.ViewModel
         /// </summary>
         private void SaveSales()
         {
-            if (!Directory.Exists(_pathToDataFolder))
-            {
-                Directory.CreateDirectory(_pathToDataFolder);
-            }
+            var dialog = new Microsoft.Win32.SaveFileDialog();
+            dialog.Filter = "svy files (.svy)|*.svy";
+            dialog.Title = "Saving list";
+            dialog.ShowDialog();
+            _pathToSaveFile = dialog.FileName;
 
             Serializer.SerializeData<ISales>(
-                new List<ISales>(Sales), 
-                $@"{_pathToDataFolder}\test.ads");
+                new List<ISales>(Sales), _pathToSaveFile);
         }
 
         #endregion

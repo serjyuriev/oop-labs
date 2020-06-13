@@ -41,12 +41,11 @@ namespace DiscountCalculatorModel
             get => _discount;
             set
             {
-                if (value < 0 || value > 100)
+                if (value <= 0 || value > 100)
                 {
                     var errors = new List<string>
                     {
-                        $"{nameof(Discount)} value lies " +
-                        $"between 0 and 100!"
+                        $"{nameof(Discount)} value must be in range (0;100]"
                     };
                     SetErrors(nameof(Discount), errors);
                 }
@@ -94,7 +93,7 @@ namespace DiscountCalculatorModel
             get => _initialCost;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     var errors = new List<string>
                     {
@@ -127,7 +126,11 @@ namespace DiscountCalculatorModel
         /// <summary>
         /// Создать экземпляр класса PercentSale
         /// </summary>
-        public PercentSale() { }
+        public PercentSale() 
+        {
+            InitialCost = 0;
+            Discount = 0;
+        }
 
         /// <summary>
         /// Создать объект класса PercentSale

@@ -114,7 +114,11 @@ namespace DiscountCalculatorModel
         /// <summary>
         /// Создать объект класса CertificateSale
         /// </summary>
-        public CertificateSale() { }
+        public CertificateSale() 
+        {
+            InitialCost = 0;
+            Discount = 0;
+        }
 
         /// <summary>
         /// Создать объект класса CertificateSale
@@ -192,7 +196,7 @@ namespace DiscountCalculatorModel
         /// <returns></returns>
         private bool IsInputValid(double value, string propertyName)
         {
-            if (value < 0)
+            if (value <= 0)
             {
                 var errors = new List<string>
                 {

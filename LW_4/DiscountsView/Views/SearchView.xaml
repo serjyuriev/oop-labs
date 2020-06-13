@@ -103,7 +103,7 @@
 
         <Grid Grid.Row="3"
               Grid.Column="1"
-              DataContext="{Binding SaleToFill}">
+              DataContext="{Binding SaleToFill, ValidatesOnNotifyDataErrors=False}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="*" />
@@ -132,7 +132,7 @@
 
         <Grid Grid.Row="5"
               Grid.Column="1"
-              DataContext="{Binding SaleToFill}">
+              DataContext="{Binding SaleToFill, ValidatesOnNotifyDataErrors=False}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="*" />

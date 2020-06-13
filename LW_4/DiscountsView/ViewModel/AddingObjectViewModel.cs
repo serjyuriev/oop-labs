@@ -87,6 +87,9 @@ namespace DiscountsView.ViewModel
         {
             var generatedValues = Randomizer.GetRandomValuesForSales();
 
+            SelectedSale = Sales[(int)(1 - generatedValues[0])];
+            RaisePropertyChanged(nameof(SelectedSale));
+
             SelectedSale = Sales[(int)generatedValues[0]];
             SelectedSale.InitialCost = generatedValues[1];
             SelectedSale.Discount = generatedValues[2];
