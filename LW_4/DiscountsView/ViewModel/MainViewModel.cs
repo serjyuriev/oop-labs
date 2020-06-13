@@ -129,8 +129,13 @@ namespace DiscountsView.ViewModel
             dialog.Filter = "svy files (.svy)|*.svy";
             dialog.Title = "Opening list";
             dialog.ShowDialog();
-            _pathToSaveFile = dialog.FileName;
 
+            if (dialog.FileName == String.Empty)
+            {
+                return;
+            }
+
+            _pathToSaveFile = dialog.FileName;
             try
             {
                 Sales = new ObservableCollection<ISales>(
@@ -193,10 +198,6 @@ namespace DiscountsView.ViewModel
             }
             
             RaisePropertyChanged(nameof(Sales));
-            //if (SelectedSale is object)
-            //{
-                //Sales.Remove(SelectedSale);
-            //}
         }
 
         /// <summary>
@@ -208,8 +209,13 @@ namespace DiscountsView.ViewModel
             dialog.Filter = "svy files (.svy)|*.svy";
             dialog.Title = "Saving list";
             dialog.ShowDialog();
-            _pathToSaveFile = dialog.FileName;
 
+            if (dialog.FileName == String.Empty)
+            {
+                return;
+            }
+
+            _pathToSaveFile = dialog.FileName;
             Serializer.SerializeData<ISales>(
                 new List<ISales>(Sales), _pathToSaveFile);
         }
