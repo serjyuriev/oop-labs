@@ -56,9 +56,9 @@ namespace DiscountsView.ViewModel
         public double WindowHeight
         {
 #if DEBUG
-            get => 350;
+            get => 325;
 #else
-            get => 300;
+            get => 275;
 #endif
         }
 

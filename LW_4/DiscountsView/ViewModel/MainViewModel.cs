@@ -33,12 +33,6 @@ namespace DiscountsView.ViewModel
         private string _pathToSaveFile;
 
         /// <summary>
-        /// Модель представления окна поиска
-        /// </summary>
-        private readonly SearchViewModel _searchViewModel =
-            new SearchViewModel();
-
-        /// <summary>
         /// Сервис для открытия окна
         /// </summary>
         private readonly IWindowService _windowService = new WindowService();
@@ -46,6 +40,31 @@ namespace DiscountsView.ViewModel
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Команда на осуществление поиска
+        /// </summary>
+        public RelayCommand ApplyCommand { get; private set; }
+
+        /// <summary>
+        /// Команда на очистку полей окна от введенных данных
+        /// </summary>
+        public RelayCommand ClearDataCommand { get; private set; }
+
+        /// <summary>
+        /// Выбран поиск по размеру скидки
+        /// </summary>
+        public bool IsDiscountEnabled { get; set; }
+
+        /// <summary>
+        /// Выбран поиск по исходной цене
+        /// </summary>
+        public bool IsInitialCostEnabled { get; set; }
+
+        /// <summary>
+        /// Выбран поиск по типу скидки
+        /// </summary>
+        public bool IsSaleSystemEnabled { get; set; }
 
         /// <summary>
         /// Команда на загрузку данных
@@ -58,9 +77,10 @@ namespace DiscountsView.ViewModel
         public RelayCommand OpenAddingSaleWindowCommand { get; private set; }
 
         /// <summary>
-        /// Команда на открытие окна поиска скидки
+        /// Возможные системы скидок для поиска
         /// </summary>
-        public RelayCommand OpenSearchWindowCommand { get; private set; }
+        public List<ISales> PossibleSalesSystems { get; private set; } =
+            new List<ISales>() { new CertificateSale(), new PercentSale() };
 
         /// <summary>
         /// Команда на удаление выбранной строки со скидкой
@@ -74,14 +94,30 @@ namespace DiscountsView.ViewModel
             new ObservableCollection<ISales>();
 
         /// <summary>
+        /// Скидка для заполнения поисковых полей
+        /// </summary>
+        public ISales SaleToFill { get; private set; }
+
+        /// <summary>
         /// Команда на сохранение данных
         /// </summary>
         public RelayCommand SaveSalesCommand { get; private set; }
+        
+        /// <summary>
+        /// Список скидок для поиска
+        /// </summary>
+        public IList<ISales> SearchedSales { get; private set; } =
+            new ObservableCollection<ISales>();
 
         /// <summary>
         /// Выбранная в списке скидка
         /// </summary>
         public ISales SelectedSale { get; set; }
+
+        /// <summary>
+        /// Выбранная в списке поиска скидка
+        /// </summary>
+        public ISales SelectedSearchedSale { get; set; }
 
         #endregion
 
@@ -90,6 +126,9 @@ namespace DiscountsView.ViewModel
         /// </summary>
         public MainViewModel()
         {
+            SaleToFill = new CertificateSale();
+            SelectedSearchedSale = PossibleSalesSystems[0];
+
 #if DEBUG
             Sales.Add(new CertificateSale(150, 50));
             Sales.Add(new CertificateSale(10130, 3699));
@@ -97,9 +136,10 @@ namespace DiscountsView.ViewModel
             Sales.Add(new PercentSale(785000, 13));
 #endif
 
+            ApplyCommand = new RelayCommand(Apply);
+            ClearDataCommand = new RelayCommand(ClearData);
             OpenAddingSaleWindowCommand = new RelayCommand(
                 OpenAddingSaleWindow);
-            OpenSearchWindowCommand = new RelayCommand(OpenSearchWindow);
             RemoveSaleCommand = new RelayCommand<IList>(RemoveSale);
             SaveSalesCommand = new RelayCommand(SaveSales);
             LoadSalesCommand = new RelayCommand(LoadSales);
@@ -118,6 +158,121 @@ namespace DiscountsView.ViewModel
         private void AddSaleIntoList(ISales sale)
         {
             Sales.Add(sale);
+        }
+
+        /// <summary>
+        /// Осуществить поиск по заданным параметрам
+        /// </summary>
+        private void Apply()
+        {
+            SearchedSales.Clear();
+
+            if (IsSaleSystemEnabled)
+            {
+                if (IsInitialCostEnabled)
+                {
+                    if (IsDiscountEnabled)
+                    {
+                        foreach (ISales sale in Sales)
+                        {
+                            if (sale.GetType() == 
+                                SelectedSearchedSale.GetType() &&
+                                sale.InitialCost == SaleToFill.InitialCost &&
+                                sale.Discount == SaleToFill.Discount)
+                            {
+                                SearchedSales.Add(sale);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (ISales sale in Sales)
+                        {
+                            if (sale.GetType() == 
+                                SelectedSearchedSale.GetType() &&
+                                sale.InitialCost == SaleToFill.InitialCost)
+                            {
+                                SearchedSales.Add(sale);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (IsDiscountEnabled)
+                    {
+                        foreach (ISales sale in Sales)
+                        {
+                            if (sale.GetType() == 
+                                SelectedSearchedSale.GetType() &&
+                                sale.Discount == SaleToFill.Discount)
+                            {
+                                SearchedSales.Add(sale);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (ISales sale in Sales)
+                        {
+                            if (sale.GetType() == 
+                                SelectedSearchedSale.GetType())
+                            {
+                                SearchedSales.Add(sale);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (IsInitialCostEnabled)
+                {
+                    if (IsDiscountEnabled)
+                    {
+                        foreach (ISales sale in Sales)
+                        {
+                            if (sale.InitialCost == SaleToFill.InitialCost &&
+                                sale.Discount == SaleToFill.Discount)
+                            {
+                                SearchedSales.Add(sale);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (ISales sale in Sales)
+                        {
+                            if (sale.InitialCost == SaleToFill.InitialCost)
+                            {
+                                SearchedSales.Add(sale);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (IsDiscountEnabled)
+                    {
+                        foreach (ISales sale in Sales)
+                        {
+                            if (sale.Discount == SaleToFill.Discount)
+                            {
+                                SearchedSales.Add(sale);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Очистить поля поиска
+        /// </summary>
+        private void ClearData()
+        {
+            SaleToFill = new CertificateSale();
+            RaisePropertyChanged(nameof(SaleToFill));
         }
 
         /// <summary>
@@ -169,16 +324,6 @@ namespace DiscountsView.ViewModel
         {
             _windowService.ShowWindow(
                 _addingObjectViewModel, "Adding new sale");
-        }
-
-        /// <summary>
-        /// Открытие окна "Search sales"
-        /// </summary>
-        private void OpenSearchWindow()
-        {
-            Messenger.Default.Send(Sales);
-            _windowService.ShowWindow(
-                _searchViewModel, "Search sales");
         }
 
         /// <summary>

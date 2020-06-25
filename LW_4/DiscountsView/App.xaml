@@ -16,8 +16,5 @@
         <DataTemplate DataType="{x:Type vm:AddingObjectViewModel}">
             <view:AddingObjectView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:SearchViewModel}">
-            <view:SearchView />
-        </DataTemplate>
     </Application.Resources>
 </Application>

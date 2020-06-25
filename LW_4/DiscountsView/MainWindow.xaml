@@ -7,34 +7,268 @@
         "http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiscountsView"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:dtb="clr-namespace:DiscountsView.Utility"
         mc:Ignorable="d"
         Title="Discounts List Viewer" 
         WindowStartupLocation="CenterScreen"
-        Height="200"
-        Width="550"
+        Height="600"
+        Width="700"
         ResizeMode="NoResize"
         DataContext="{Binding Source={StaticResource Locator}, 
             Path=MainViewModel}">
     <Window.Resources>
-        <!-- Стиль для кнопок -->
+        <!-- Button Style -->
         <Style x:Key="buttonStyle" TargetType="Button">
-            <Setter Property="Margin" Value="5,2" />
             <Setter Property="FontSize" Value="14" />
         </Style>
+        
+        <!-- TextBlock Style -->
+        <Style x:Key="textBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+
+        <!-- TextBox Style -->
+        <Style x:Key="textBoxStyle" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        
+        <!-- CheckBox Style -->
+        <Style x:Key="checkBoxStyle" TargetType="CheckBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Grid.Column" Value="0" />
+        </Style>
+
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
     </Window.Resources>
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="0" />
-            <GradientStop Color="#FF680000" Offset="1" />
-        </LinearGradientBrush>
-    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
 
-        <DataGrid Grid.Column="1"
+        <Grid Grid.Column="0"
+              Background="Wheat">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0"
+                  Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+
+                <Button Content="Add sales"
+                        Grid.Row="1"
+                        Style="{StaticResource buttonStyle}" 
+                        Command="{Binding OpenAddingSaleWindowCommand}" />
+
+                <Button Content="Remove sale" 
+                        Grid.Row="3"
+                        Style="{StaticResource buttonStyle}" 
+                        Command="{Binding RemoveSaleCommand}"
+                        CommandParameter="{Binding ElementName=dataGrid,
+                        Path=SelectedItems}"/>
+
+                <Button Content="Load sales" 
+                        Grid.Row="5"
+                        Style="{StaticResource buttonStyle}" 
+                        Command="{Binding LoadSalesCommand}" />
+
+                <Button Content="Save sales" 
+                        Grid.Row="7"
+                        Style="{StaticResource buttonStyle}" 
+                        Command="{Binding SaveSalesCommand}" />
+            </Grid>
+
+            <Grid Grid.Row="1"
+                  Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="1.5*" />
+                    <!-- Content -->
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="1.5*" />
+                    <!-- Content -->
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="1.5*" />
+                    <!-- Content -->
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2*" />
+                    <!-- Content-->
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <CheckBox x:Name="saleSystemCheckBox"
+                          IsChecked="{Binding IsSaleSystemEnabled, 
+                              Mode=OneWayToSource}"
+                          Grid.Row="3"
+                          Style="{StaticResource checkBoxStyle}" />
+
+                <CheckBox x:Name="initialCostCheckBox" 
+                          IsChecked="{Binding IsInitialCostEnabled,
+                              Mode=OneWayToSource}"
+                          Grid.Row="7"
+                          Style="{StaticResource checkBoxStyle}"  />
+
+                <CheckBox x:Name="discountCheckBox" 
+                          Grid.Row="11"
+                          IsChecked="{Binding IsDiscountEnabled,
+                              Mode=OneWayToSource}"
+                          Style="{StaticResource checkBoxStyle}"  />
+
+                <TextBlock Text="Sale system"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="1"
+                           Style="{StaticResource textBlockStyle}" />
+
+                <ComboBox x:Name="comboboxSaleSystem"
+                          Grid.Column="1"
+                          Grid.Row="3"
+                          ItemsSource="{Binding PossibleSalesSystems}"
+                          DisplayMemberPath="Name" 
+                          SelectedItem="{Binding SelectedSearchedSale, 
+                              ValidatesOnNotifyDataErrors=False}"
+                          FontSize="14" 
+                          IsEnabled="{Binding ElementName=saleSystemCheckBox, 
+                            Path=IsChecked}"
+                          HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Center" />
+
+                <TextBlock Text="Initial cost"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="5"
+                           Style="{StaticResource textBlockStyle}" />
+
+                <Grid Grid.Row="7"
+                      Grid.Column="1"
+                      DataContext="{Binding SaleToFill, 
+                          ValidatesOnNotifyDataErrors=False}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <dtb:DoubleTextBox Grid.Column="0"
+                                       HorizontalContentAlignment="Right"
+                                       Text="{Binding InitialCost, 
+                                           ValidatesOnNotifyDataErrors=False}"
+                                       IsEnabled=
+                                       "{Binding 
+                                           ElementName=initialCostCheckBox, 
+                                               Path=IsChecked}"
+                                       Style=
+                                       "{StaticResource textBoxStyle}" />
+
+                    <TextBlock Grid.Column="1" 
+                               Text="rub"
+                               Style="{StaticResource textBlockStyle}"
+                               VerticalAlignment="Center" />
+                </Grid>
+
+                <TextBlock Text="Discount"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="9"
+                           Style="{StaticResource textBlockStyle}" />
+
+                <Grid Grid.Row="11"
+                      Grid.Column="1"
+                      DataContext="{Binding SaleToFill, 
+                          ValidatesOnNotifyDataErrors=False}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <dtb:DoubleTextBox Grid.Column="0"
+                                       HorizontalContentAlignment="Right"
+                                       Text="{Binding Discount, 
+                                           ValidatesOnNotifyDataErrors=False}"
+                                       Style="{StaticResource textBoxStyle}" 
+                                       IsEnabled=
+                                       "{Binding ElementName=discountCheckBox, 
+                                               Path=IsChecked}" />
+
+                    <TextBlock Grid.Column="1" 
+                               Text="{Binding ElementName=comboboxSaleSystem, 
+                                   Path=SelectedItem.DiscountMeasure}"
+                               Style="{StaticResource textBlockStyle}"
+                               Visibility="{Binding 
+                                   ElementName=saleSystemCheckBox, 
+                                   Path=IsChecked,
+                                   Converter=
+                                   {StaticResource VisibleIfTrueConverter}}"
+                               VerticalAlignment="Center" />
+                </Grid>
+
+                <!-- Грид с кнопками -->
+                <Grid Grid.Row="13"
+                      Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                            Grid.Row="1"
+                            Content="Search" 
+                            Command="{Binding ApplyCommand}"
+                            Style="{StaticResource buttonStyle}" />
+
+                    <Button Grid.Column="2"
+                            Grid.Row="1"
+                            Content="Clear" 
+                            Command="{Binding ClearDataCommand}"
+                            Style="{StaticResource buttonStyle}" />
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <DataGrid Grid.Row="0"
                   Name="dataGrid"
                   ItemsSource="{Binding Sales, Mode=OneWay}"
                   SelectedItem="{Binding SelectedSale}"
@@ -42,45 +276,43 @@
                   IsReadOnly="True"
                   FontSize="14" 
                   ItemStringFormat="#.##">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Type of sale" 
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Type of sale" 
                                     Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Initial cost" 
+                    <DataGridTextColumn Header="Initial cost" 
                                     Binding="{Binding InitialCost}" />
-                <DataGridTextColumn Header="Discount" 
+                    <DataGridTextColumn Header="Discount" 
                                     Binding="{Binding Discount}" />
-                <DataGridTextColumn Header="Measure" 
+                    <DataGridTextColumn Header="Measure" 
                                     Binding="{Binding DiscountMeasure}" />
-                <DataGridTextColumn Header="Final cost" 
+                    <DataGridTextColumn Header="Final cost" 
                                     Binding="{Binding FinalCost}" />
-            </DataGrid.Columns>
-        </DataGrid>
+                </DataGrid.Columns>
+            </DataGrid>
 
-        <!-- Грид для кнопок -->
-        <StackPanel Orientation="Vertical"
-                    VerticalAlignment="Center"
-                    Margin="0,5,0,0">
-            <Button Content="Add sales" 
-                    Style="{StaticResource buttonStyle}" 
-                    Command="{Binding OpenAddingSaleWindowCommand}" />
+            <DataGrid Grid.Row="1"
+                  Name="searchGrid"
+                  ItemsSource="{Binding SearchedSales, Mode=OneWay}"
+                  SelectedItem="{Binding SelectedSale}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  FontSize="14" 
+                  ItemStringFormat="#.##">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Type of sale" 
+                                    Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Initial cost" 
+                                    Binding="{Binding InitialCost}" />
+                    <DataGridTextColumn Header="Discount" 
+                                    Binding="{Binding Discount}" />
+                    <DataGridTextColumn Header="Measure" 
+                                    Binding="{Binding DiscountMeasure}" />
+                    <DataGridTextColumn Header="Final cost" 
+                                    Binding="{Binding FinalCost}" />
+                </DataGrid.Columns>
+            </DataGrid>
 
-            <Button Content="Remove sale" 
-                    Style="{StaticResource buttonStyle}" 
-                    Command="{Binding RemoveSaleCommand}"
-                    CommandParameter="{Binding ElementName=dataGrid,
-                        Path=SelectedItems}"/>
+        </Grid>
 
-            <Button Content="Find sales" 
-                    Style="{StaticResource buttonStyle}" 
-                    Command="{Binding OpenSearchWindowCommand}" />
-
-            <Button Content="Load sales" 
-                    Style="{StaticResource buttonStyle}" 
-                    Command="{Binding LoadSalesCommand}" />
-
-            <Button Content="Save sales" 
-                    Style="{StaticResource buttonStyle}" 
-                    Command="{Binding SaveSalesCommand}" />
-        </StackPanel>
     </Grid>
 </Window>

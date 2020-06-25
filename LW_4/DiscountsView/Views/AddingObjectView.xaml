@@ -17,6 +17,7 @@
             <Setter Property="FontSize" Value="14" />
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Grid.Column" Value="1" />
         </Style>
 
         <!-- TextBox Style -->
@@ -44,39 +45,55 @@
             <RowDefinition Height="0.5*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="0.5*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="1.5*" />
             <RowDefinition Height="0.5*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="1.5*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.5*" />
             <RowDefinition Height="{Binding LastGridHeight}" />
+            <RowDefinition Height="0.25*" />
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
         <TextBlock Text="Sale system"
-                   Grid.Row="0"
+                   Grid.Row="1"
                    Style="{StaticResource textBlockStyle}" />
 
         <ComboBox x:Name="comboboxSaleSystem"
-                  Grid.Row="1"
+                  Grid.Row="3"
+                  Grid.Column="1"
                   ItemsSource="{Binding Sales}"
                   DisplayMemberPath="Name"
-                  SelectedItem="{Binding SelectedSale, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedSale, 
+                      UpdateSourceTrigger=PropertyChanged}"
                   FontSize="14" 
                   HorizontalContentAlignment="Center"
-                  VerticalContentAlignment="Center" 
-                  Margin="15,7.5,15,15" />
+                  VerticalContentAlignment="Center" />
 
         <TextBlock Text="Initial cost"
-                   Grid.Row="2"
+                   Grid.Row="5"
                    Style="{StaticResource textBlockStyle}" />
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="7"
+              Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <dtb:DoubleTextBox Grid.Column="0"
-                               Margin="15,7.5,7.5,15" 
                                HorizontalContentAlignment="Right"
                                Text="{Binding ElementName=comboboxSaleSystem,
                                     Path=SelectedItem.InitialCost}"
@@ -96,22 +113,21 @@
             <TextBlock Grid.Column="1" 
                        Text="rub"
                        Style="{StaticResource textBlockStyle}"
-                       VerticalAlignment="Center" 
-                       Margin="0,7.5,15,15"/>
+                       VerticalAlignment="Center" />
         </Grid>
 
         <TextBlock Text="Discount"
-                   Grid.Row="4"
+                   Grid.Row="9"
                    Style="{StaticResource textBlockStyle}" />
 
-        <Grid Grid.Row="5">
+        <Grid Grid.Row="11"
+              Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <dtb:DoubleTextBox Grid.Column="0"
-                               Margin="15,7.5,7.5,15" 
                                HorizontalContentAlignment="Right"
                                Text="{Binding ElementName=comboboxSaleSystem,
                                     Path=SelectedItem.Discount,
@@ -134,11 +150,11 @@
                        Text="{Binding ElementName=comboboxSaleSystem, 
                            Path=SelectedItem.DiscountMeasure}"
                        Style="{StaticResource textBlockStyle}"
-                       VerticalAlignment="Center"  
-                       Margin="0,7.5,15,15"/>
+                       VerticalAlignment="Center" />
         </Grid>
 
-        <Grid Grid.Row="6">
+        <Grid Grid.Row="13"
+              Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -146,13 +162,11 @@
 
             <Button Grid.Column="0"
                     Content="Add" 
-                    Margin="15,15,7.5,15"
                     Command="{Binding AddCreatedSale}"
                     Style="{StaticResource buttonStyle}" />
 
             <Button Grid.Column="1"
                     Content="Done" 
-                    Margin="7.5,15,15,15"
                     Style="{StaticResource buttonStyle}">
                 <!-- Закрытие окна через WPFBehaviors от Microsoft -->
                 <!-- Без codebehind, связывания VM и V и т.д. -->
@@ -169,11 +183,11 @@
             </Button>
         </Grid>
 
-        <Button Grid.Row="7"
+        <Button Grid.Row="15"
+                Grid.Column="1"
                 Content="Create Random Data" 
                 Style="{StaticResource buttonStyle}"
-                Command="{Binding CreateRandomDataCommand}"
-                Margin="15,7.5"/>
+                Command="{Binding CreateRandomDataCommand}" />
 
     </Grid>
 </UserControl>
