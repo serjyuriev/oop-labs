@@ -315,6 +315,12 @@ namespace DiscountsView.ViewModel
                     "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            catch (System.Text.DecoderFallbackException)
+            {
+                MessageBox.Show("Файл поврежден!",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
         }
 
         /// <summary>
