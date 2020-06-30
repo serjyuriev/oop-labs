@@ -6,14 +6,14 @@ namespace WPFWindowServices
     /// <summary>
     /// Создать объект класса WindowService для создания новых окон
     /// </summary>
-    public class WindowService : IWindowService
+    public static class WindowService
     {
         /// <summary>
         /// Создать новое окно на основании переданной модели представления
         /// </summary>
         /// <param name="viewModel">Модель представления для окна</param>
         /// <param name="title">Заголовок окна</param>
-        public void ShowWindow(object viewModel, string title)
+        public static void ShowWindow(object viewModel, string title)
         {
             var contentUI = new ContentControl
             {

@@ -32,11 +32,6 @@ namespace DiscountsView.ViewModel
         /// </summary>
         private string _pathToSaveFile;
 
-        /// <summary>
-        /// Сервис для открытия окна
-        /// </summary>
-        private readonly IWindowService _windowService = new WindowService();
-
         #endregion
 
         #region Properties
@@ -328,7 +323,7 @@ namespace DiscountsView.ViewModel
         /// </summary>
         private void OpenAddingSaleWindow()
         {
-            _windowService.ShowWindow(
+            WindowService.ShowWindow(
                 _addingObjectViewModel, "Adding new sale");
         }
 
